@@ -1,16 +1,12 @@
 import React from "react";
-import { AppContainer } from "./components/AppContainer/AppContainer";
-import { Footer } from "./components/Footer/Footer";
-import { Header } from "./components/Header/Header";
-import { Input } from "./components/Input/Input";
+
 import { AppThemeProvider } from "./contexts/AppThemeProvider/AppThemeProvider";
+import { MainLayout } from "./MainLayout/MainLayout";
 
 function App() {
   return (
     <AppThemeProvider>
-      <Header></Header>
-      hello
-      <Footer></Footer>
+      <MainLayout></MainLayout>
     </AppThemeProvider>
   );
 }
