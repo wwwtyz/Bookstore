@@ -165,14 +165,14 @@ const darkTheme = {
 
 const lightTheme = {
   colors: {
-    background: "#AFB2B6",
+    background: "#FFFFFF",
     backgroundLight: "#F7F7F7",
-    backgroundMedium: "#E7E7E7",
+    backgroundMedium: "#A8A8A8",
     backgroundDisabled: "#E8E8E8",
-    cardBackground: "#D7E4FD",
+    cardBackground: "#F4EEFD",
     border: "#DADADA",
     error: "#FC857F",
-    primary: "#313037",
+    primary: "#FFFFFF",
     primary2: "#5B5A62",
     text: "#323537",
     textDisabled: "#8D8E97",

@@ -12,7 +12,7 @@ export const InputLabel = styled.label`
 `;
 
 export const StyledInput = styled.input`
-  border: 1px solid var(--bs-color-border);
+  border: 1px solid #dadada;
   font-size: var(--bs-subline-font-size);
   line-height: var(--bs-subline-line-height);
   padding: var(--bs-spacing-7) var(--bs-spacing-6);
