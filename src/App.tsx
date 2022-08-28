@@ -1,9 +1,11 @@
-import React from 'react';
-
+import React from "react";
+import { Input } from "./components/Input/Input";
 
 function App() {
   return (
-    <div>Works</div>
+    <div>
+      <Input id={"id"} label={"Hello"} placeholder={"Works"}></Input>
+    </div>
   );
 }
 
