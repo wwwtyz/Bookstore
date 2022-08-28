@@ -4,12 +4,12 @@ export const BookCardContainer = styled.div`
   display: flex;
   flex-direction: column;
   max-width: 340px;
+  flex: 1;
   margin: 1rem;
 `;
 export const ImageContainer = styled.div`
   display: flex;
   justify-content: center;
-  margin: 0 1rem;
   flex: 1;
   background: #f4eefd;
 `;
