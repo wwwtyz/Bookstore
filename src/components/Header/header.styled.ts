@@ -43,7 +43,7 @@ export const SearchBarContainer = styled.div`
     position: absolute;
     top: 0;
     right: 0;
-    transform: translate(-200%, 35%);
+    transform: translate(-300%, 50%);
     width: var(--bs-spacing-7);
     height: auto;
   }

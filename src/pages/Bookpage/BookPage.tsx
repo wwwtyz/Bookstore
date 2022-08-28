@@ -14,15 +14,15 @@ export interface Book {
   error?: string;
   title: string;
   subtitle: string;
-  authors: string;
-  publisher: string;
-  language: string;
-  isbn10: string;
+  authors?: string;
+  publisher?: string;
+  language?: string;
+  isbn10?: string;
   isbn13: string;
-  pages: string;
-  year: string;
-  rating: string;
-  desc: string;
+  pages?: string;
+  year?: string;
+  rating?: string;
+  desc?: string;
   price: string;
   image: string;
   url: string;
@@ -31,13 +31,6 @@ export interface Book {
     "Chapter 5": string;
   };
   is_bookmarked: boolean;
-}
-
-export interface FetchBookResponse {
-  total: string;
-  error: string;
-  page: string;
-  books: Book[];
 }
 
 export function BookPage({

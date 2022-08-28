@@ -7,6 +7,7 @@ import { AppThemeProvider } from "./contexts/AppThemeProvider/AppThemeProvider";
 import { AppContainerBox } from "./MainLayout/layout.styled";
 import { MainLayout } from "./MainLayout/MainLayout";
 import { Book, BookPage } from "./pages/Bookpage/BookPage";
+import { MainPage } from "./pages/MainPage/MainPage";
 
 const book = {
   error: "0",
@@ -20,7 +21,7 @@ const book = {
   pages: "384",
   year: "2018",
   rating: "5",
-  desc: "An application running in the cloud can benefit from incredible efficiencies, but they come with unique security threats too. A DevOps team&#039;s highest priority is understanding those risks and hardening the system against them.Securing DevOps teaches you the essential techniques to secure your c...",
+  desc: "An application running in the cloud can benefit from incredible efficiencies, but they come with unique security threats too. A DevOps teams highest priority is understanding those risks and hardening the system against them.Securing DevOps teaches you the essential techniques to secure your c...",
   price: "$39.65",
   image: "https://itbook.store/img/books/9781617294136.png",
   url: "https://itbook.store/books/9781617294136",
@@ -31,12 +32,12 @@ const book = {
 };
 
 function App() {
-  fetchBooks();
+  fetchBooks({limit: 10});
   return (
     <AppThemeProvider>
       <Header></Header>
       <AppContainerBox>
-        <BookPage
+        {/* <BookPage
           title={book.title}
           subtitle={book.subtitle}
           isbn13={book.isbn13}
@@ -52,7 +53,8 @@ function App() {
           year={book.year}
           rating={book.rating}
           desc={book.desc}
-        ></BookPage>
+        ></BookPage> */}
+        <MainPage></MainPage>
       </AppContainerBox>
       <Footer></Footer>
     </AppThemeProvider>

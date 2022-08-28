@@ -36,6 +36,6 @@ export const AboutBox = styled.div`
   justify-content: space-between;
 `;
 export const Price = styled.span`
-  font-size: var(--bs-headline-2-font-size);
+  font-size: var(--bs-headline-3-font-size);
   color: var(--bs-color-text);
 `;
