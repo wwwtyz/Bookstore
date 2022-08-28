@@ -150,7 +150,7 @@ export enum ThemeVariant {
 const darkTheme = {
   colors: {
     background: "#313037",
-    backgroundLight: "#8b8888",
+    backgroundLight: "#F4EEFD",
     backgroundMedium: "#DADADA",
     backgroundDisabled: "#E8E8E8",
     border: "#DADADA",
@@ -166,10 +166,9 @@ const darkTheme = {
 const lightTheme = {
   colors: {
     background: "#FFFFFF",
-    backgroundLight: "#F7F7F7",
+    backgroundLight: "##F4EEFD",
     backgroundMedium: "#A8A8A8",
     backgroundDisabled: "#E8E8E8",
-    cardBackground: "#F4EEFD",
     border: "#DADADA",
     error: "#FC857F",
     primary: "#FFFFFF",
