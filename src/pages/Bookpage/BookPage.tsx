@@ -28,53 +28,15 @@ export interface Book {
   desc?: string;
   price: string;
   image: string;
-  url: string;
+  url?: string;
   pdf?: Object;
-  is_bookmarked: boolean;
-}
-
-const resp = {
-  error: "0",
-  title: "Robotics, AI, and Humanity",
-  subtitle: "Science, Ethics, and Policy",
-  authors:
-    "Joachim von Braun, Margaret S. Archer, Gregory M. Reichberg, Marcelo Sanchez Sorondo",
-  publisher: "Springer",
-  language: "English",
-  isbn10: "303054172X",
-  isbn13: "9783030541729",
-  pages: "261",
-  year: "2021",
-  rating: "0",
-  desc: "This open book examines recent advances in how artificial intelligence (AI) and robotics have elicited widespread debate over their benefits and drawbacks for humanity. The emergent technologies have for instance implications within medicine and health care, employment, transport, manufacturing, agr...",
-  price: "$59.99",
-  image: "https://itbook.store/img/books/9783030541729.png",
-  url: "https://itbook.store/books/9783030541729",
-  pdf: {
-    "Free eBook":
-      "https://www.dbooks.org/d/3030541738-1658757107-091222c335b662db/",
-  },
-};
-
-export interface BookResponse {
-  title: string;
-  subtitle: string;
-  authors: string;
-  publisher: string;
-  language: string;
-  isbn13: string;
-  year: string;
-  rating: string;
-  desc: string;
-  price: string;
-  image: string;
   is_bookmarked: boolean;
 }
 
 export function BookPage() {
   const { isbn13 } = useParams<{ isbn13: string }>();
   const apiPath = `https://api.itbook.store/1.0/books/${isbn13}`;
-  const [bookData, setBookData] = React.useState<BookResponse>({
+  const [bookData, setBookData] = React.useState<Book>({
     title: "",
     subtitle: "",
     authors: "",
@@ -121,11 +83,11 @@ export function BookPage() {
           <BookAboutContainer>
             <AboutBox>
               <Price>{bookData.price}</Price>
-              <span>Rate</span>
+              <span>Rate: {bookData.rating} </span>
             </AboutBox>
             <AboutBox>
               <span>Author</span>
-              <span>{bookData.authors}</span>
+              <span style={{ maxWidth: "50%" }}>{bookData.authors}</span>
             </AboutBox>
             <AboutBox>
               <span>Publisher</span>

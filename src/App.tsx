@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import { fetchBooks } from "./api/fetchBooks";
 import { Footer } from "./components/Footer/Footer";
 import { Header } from "./components/Header/Header";
@@ -41,6 +41,8 @@ function App() {
           <Route index element={<MainPage />} />
           <Route path={`${AppRoute.Books}/:isbn13`} element={<BookPage />} />
         </Route>
+        <Route path={AppRoute.NotFound} element={<div>Not found</div>} />
+        <Route path="*" element={<Navigate to={AppRoute.NotFound} replace />} />
       </Routes>
     </AppThemeProvider>
   );
