@@ -8,22 +8,14 @@ import {
   AppContainerBox,
 } from "./layout.styled";
 
-export function MainLayout(
-  children:
-    | string
-    | number
-    | boolean
-    | React.ReactElement<any, string | React.JSXElementConstructor<any>>
-    | React.ReactFragment
-    | React.ReactPortal
-    | null
-    | undefined
-) {
+export function MainLayout() {
   return (
     <PageContainer>
       <Header />
       <AppContainerBox>
-        <ContentContainer>{children}</ContentContainer>
+        <ContentContainer>
+          <Outlet />
+        </ContentContainer>
       </AppContainerBox>
       <Footer />
     </PageContainer>

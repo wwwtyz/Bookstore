@@ -1,4 +1,5 @@
 import React from "react";
+import { AppRoute } from "../../enums/router";
 import { Book } from "../../pages/Bookpage/BookPage";
 import { Price } from "../../pages/Bookpage/bookPage.styled";
 import {
@@ -14,7 +15,7 @@ export function BookCard({ book }: { book: Book }) {
       <ImageContainer>
         <img src={book.image} alt="" />
       </ImageContainer>
-      <Title>{book.title}</Title>
+      <Title to={`${AppRoute.Books}/${book.isbn13}`}>{book.title}</Title>
       {/* <About>
         by {book.authors}, {book.publisher} {book.year}
       </About> */}

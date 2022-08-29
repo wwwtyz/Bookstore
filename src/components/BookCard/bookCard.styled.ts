@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { Link } from "react-router-dom";
 
 export const BookCardContainer = styled.div`
   display: flex;
@@ -13,7 +14,8 @@ export const ImageContainer = styled.div`
   flex: 1;
   background: #f4eefd;
 `;
-export const Title = styled.p`
+export const Title = styled(Link)`
+  color: var(--bs-color-text);
   font-size: var(--bs-headline-3-font-size);
   line-height: var(--bs-headline-3-font-size);
   word-wrap: break-word;

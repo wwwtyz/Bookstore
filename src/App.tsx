@@ -1,9 +1,11 @@
 import React from "react";
+import { Route, Routes } from "react-router-dom";
 import { fetchBooks } from "./api/fetchBooks";
 import { Footer } from "./components/Footer/Footer";
 import { Header } from "./components/Header/Header";
 
 import { AppThemeProvider } from "./contexts/AppThemeProvider/AppThemeProvider";
+import { AppRoute } from "./enums/router";
 import { AppContainerBox } from "./MainLayout/layout.styled";
 import { MainLayout } from "./MainLayout/MainLayout";
 import { Book, BookPage } from "./pages/Bookpage/BookPage";
@@ -32,31 +34,14 @@ const book = {
 };
 
 function App() {
-  fetchBooks({limit: 10});
   return (
     <AppThemeProvider>
-      <Header></Header>
-      <AppContainerBox>
-        {/* <BookPage
-          title={book.title}
-          subtitle={book.subtitle}
-          isbn13={book.isbn13}
-          price={book.price}
-          image={book.image}
-          url={book.url}
-          is_bookmarked={false}
-          authors={book.authors}
-          publisher={book.publisher}
-          language={book.language}
-          isbn10={book.isbn10}
-          pages={book.pages}
-          year={book.year}
-          rating={book.rating}
-          desc={book.desc}
-        ></BookPage> */}
-        <MainPage></MainPage>
-      </AppContainerBox>
-      <Footer></Footer>
+      <Routes>
+        <Route path={AppRoute.Main} element={<MainLayout />}>
+          <Route index element={<MainPage />} />
+          <Route path={`${AppRoute.Books}/:isbn13`} element={<BookPage />} />
+        </Route>
+      </Routes>
     </AppThemeProvider>
   );
 }

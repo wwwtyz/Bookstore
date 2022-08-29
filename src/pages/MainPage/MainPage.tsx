@@ -6,22 +6,18 @@ import { BookList, MainContainer } from "./mainPage.styled";
 
 export interface FetchBookResponse {
   total: string;
-  error: string;
-  page: string;
   books: Book[];
 }
 
 export function MainPage() {
   const [booksData, setBooksData] = React.useState<FetchBookResponse>({
     total: "",
-    error: "",
-    page: "",
     books: [],
   });
-
+  const apiPath = "https://api.itbook.store/1.0/new";
   React.useEffect(() => {
     const abortController = new AbortController();
-    fetchBooks()
+    fetchBooks(apiPath)
       .then((response) => {
         setBooksData(response);
       })
