@@ -11,7 +11,7 @@ export const BookCardContainer = styled.div`
 export const ImageContainer = styled.div`
   display: flex;
   justify-content: center;
-  flex: 1;
+
   background: #f4eefd;
 `;
 export const Title = styled(Link)`
@@ -24,6 +24,8 @@ export const Title = styled(Link)`
 export const About = styled.div`
   display: flex;
   justify-content: space-between;
+  color: var(--bs-color-text-disabled);
+  line-height: var(--bs-spacing-7);
 `;
 
 export const PriceBox = styled.div`
@@ -34,4 +36,14 @@ export const PriceBox = styled.div`
   font-size: var(--bs-headline-3-font-size);
   color: var(--bs-color-text);
   margin-top: auto;
+`;
+export const AboutContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+`;
+
+export const AboutBox = styled.div`
+  margin: var(--bs-spacing-8) 0;
 `;

@@ -6,6 +6,17 @@ export interface PostsResponse {
   error: string;
   page: string;
   books: Book[];
+  title: string;
+  subtitle: string;
+  authors: string;
+  publisher: string;
+  language: string;
+  isbn13: string;
+  year: string;
+  rating: string;
+  desc: string;
+  price: string;
+  image: string;
 }
 
 export interface FetchBooksPayload {
@@ -16,22 +27,11 @@ export async function fetchBooks(
   apiPath: string,
   {
     signal,
-    ...params
   }: {
     signal?: AbortController["signal"];
   } & FetchBooksPayload = {}
 ): Promise<PostsResponse> {
-  const queryParams = (Object.keys(params) as (keyof typeof params)[]).reduce(
-    (acc, key) => {
-      const value = params[key];
-      if (typeof value !== "undefined") {
-        acc.append(key, `${value}`);
-      }
-      return acc;
-    },
-    new URLSearchParams()
-  );
-  const { data } = await axios.get(apiPath, { params: queryParams, signal });
+  const { data } = await axios.get(apiPath, { params: signal });
 
   return data;
 }

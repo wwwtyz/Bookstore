@@ -30,7 +30,7 @@ export interface Book {
   image: string;
   url?: string;
   pdf?: Object;
-  is_bookmarked: boolean;
+  is_bookmarked?: boolean;
 }
 
 export function BookPage() {
@@ -48,7 +48,6 @@ export function BookPage() {
     desc: "",
     price: "",
     image: "",
-
     is_bookmarked: false,
   });
   React.useEffect(() => {
