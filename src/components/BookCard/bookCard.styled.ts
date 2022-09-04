@@ -12,7 +12,7 @@ export const ImageContainer = styled.div`
   display: flex;
   justify-content: center;
 
-  background: #f4eefd;
+  background: var(--bs-color-primary-2);
 `;
 export const Title = styled(Link)`
   color: var(--bs-color-text);

@@ -18,8 +18,10 @@ export const HeaderContainer = styled.header`
   max-width: 1120px;
   width: 100%;
 
-  a {
+  a * {
     margin: 0 1rem;
+    fill: var(--bs-color-text-invert);
+    stroke: var(--bs-color-primary);
   }
 `;
 
@@ -43,7 +45,8 @@ export const SearchBarContainer = styled.div`
     opacity: 0.8;
   }
 
-  img {
+  svg {
+    fill: var(--bs-color-text-invert);
     position: absolute;
     top: 0;
     right: 0;
@@ -53,16 +56,30 @@ export const SearchBarContainer = styled.div`
   }
 `;
 
+export const ThemeSwitcherBox = styled.div`
+  padding: 0 var(--bs-spacing-7);
+`;
+
 export const LinkContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
 
-  a {
-    margin: 0 var(--bs-spacing-8);
-    padding: var(--bs-spacing-8);
+  * {
+    fill: var(--bs-color-text-invert);
+    stroke: var(--bs-color-primary);
 
     :hover {
       background: var(--bs-color-bg-medium);
+    }
+
+    :hover * {
+      fill: #fc857f;
+    }
+
+    :active * {
+      fill: #fc857f;
+      stroke: #fc857f;
     }
   }
 `;

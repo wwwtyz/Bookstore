@@ -150,16 +150,16 @@ export enum ThemeVariant {
 const darkTheme = {
   colors: {
     background: "#313037",
-    backgroundLight: "#F4EEFD",
-    backgroundMedium: "#DADADA",
+    backgroundLight: "#D7E4FD",
+    backgroundMedium: "#F4EEFD",
     backgroundDisabled: "#E8E8E8",
-    border: "#DADADA",
+    border: "#5B5A62",
     error: "#FD3419",
-    primary2: "#AC9F32",
-    primary: "#DDCE55",
+    primary2: "#CAEFF0",
+    primary: "#5B5A62",
     text: "#F1F1F1",
     textDisabled: "#b2b2b2",
-    textInvert: "#313037",
+    textInvert: "#FFFFFF",
   },
 };
 
@@ -167,15 +167,15 @@ const lightTheme = {
   colors: {
     background: "#FFFFFF",
     backgroundLight: "##F4EEFD",
-    backgroundMedium: "#A8A8A8",
+    backgroundMedium: "#CAEFF0",
     backgroundDisabled: "#E8E8E8",
     border: "#DADADA",
     error: "#FC857F",
     primary: "#FFFFFF",
-    primary2: "#5B5A62",
+    primary2: "#F4EEFD",
     text: "#323537",
     textDisabled: "#8D8E97",
-    textInvert: "#FFF",
+    textInvert: "#313037",
   },
 };
 
