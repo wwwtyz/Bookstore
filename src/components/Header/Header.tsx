@@ -30,7 +30,7 @@ export function Header() {
           <Link to={AppRoute.Main}>
             <Heart />
           </Link>
-          <Link to={AppRoute.Main}>
+          <Link to={AppRoute.Cart}>
             <Cart />
           </Link>
           <Link to={AppRoute.Main}>

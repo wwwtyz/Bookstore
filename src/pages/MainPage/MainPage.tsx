@@ -14,12 +14,15 @@ export function MainPage() {
     total: "",
     books: [],
   });
-  const apiPath = "https://api.itbook.store/1.0/new";
+  const apiPath = "https://api.itbook.store/1.0/search/test";
+  const [isLoading, setIsLoading] = React.useState(false);
   React.useEffect(() => {
     const abortController = new AbortController();
+    setIsLoading(true);
     fetchBooks(apiPath)
       .then((response) => {
         setBooksData(response);
+        setIsLoading(false);
       })
       .catch((err) => {
         console.error(err);
@@ -32,11 +35,15 @@ export function MainPage() {
   return (
     <MainContainer>
       <h1>New Releases Books</h1>
-      <BookList>
-        {booksData.books.map((book) => (
-          <BookCard book={book} key={book.isbn13} />
-        ))}
-      </BookList>
+      {isLoading ? (
+        <div>LOADING</div>
+      ) : (
+        <BookList>
+          {booksData.books.map((book) => (
+            <BookCard book={book} key={book.isbn13} />
+          ))}
+        </BookList>
+      )}
     </MainContainer>
   );
 }

@@ -19,17 +19,13 @@ export interface PostsResponse {
   image: string;
 }
 
-export interface FetchBooksPayload {
-  limit?: number;
-  offset?: number;
-}
 export async function fetchBooks(
   apiPath: string,
   {
     signal,
   }: {
     signal?: AbortController["signal"];
-  } & FetchBooksPayload = {}
+  } = {}
 ): Promise<PostsResponse> {
   const { data } = await axios.get(apiPath, { params: signal });
 

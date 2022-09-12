@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { fetchBooks } from "../../api/fetchBooks";
 import { AppRoute } from "../../enums/router";
 import { Book } from "../../pages/Bookpage/BookPage";
@@ -29,34 +30,44 @@ export function BookCard({ book }: { book: Book }) {
     image: "",
     is_bookmarked: false,
   });
+  const [isLoading, setIsLoading] = React.useState(false);
 
   React.useEffect(() => {
     const abortController = new AbortController();
+    setIsLoading(true);
     fetchBooks(apiPath)
       .then((response) => {
         setBookData(response);
+        setIsLoading(false);
       })
       .catch((err) => {
         console.error(err);
       });
+
     return () => {
       abortController.abort();
     };
   }, []);
   return (
     <BookCardContainer>
-      <ImageContainer>
-        <img src={book.image} alt="" />
-      </ImageContainer>
+      <Link to={`${AppRoute.Books}/${book.isbn13}`}>
+        <ImageContainer>
+          {isLoading ? <div>LOADING</div> : <img src={book.image} alt="" />}
+        </ImageContainer>
+      </Link>
       <AboutContainer>
         <AboutBox>
           <Title to={`${AppRoute.Books}/${book.isbn13}`}>{book.title}</Title>
         </AboutBox>
-        <AboutBox>
-          <About>
-            by {bookData.authors}, {bookData.publisher}, {bookData.year}
-          </About>
-        </AboutBox>
+        {isLoading ? (
+          <div>LOADING</div>
+        ) : (
+          <AboutBox>
+            <About>
+              by {bookData.authors}, {bookData.publisher}, {bookData.year}
+            </About>
+          </AboutBox>
+        )}
         <AboutBox>
           <PriceBox>
             <Price>{book.price}</Price>
