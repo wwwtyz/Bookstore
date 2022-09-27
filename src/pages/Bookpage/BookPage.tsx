@@ -1,9 +1,10 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
-import { fetchBooks } from "../../api/fetchBooks";
+import { fetchBook } from "../../api/fetchBook";
 
 import Heart from "../../assets/header/heart.svg";
 import { AppRoute } from "../../enums/router";
+import { BookDetailed } from "../../types/book.types";
 import {
   AboutBox,
   BookAboutContainer,
@@ -13,30 +14,10 @@ import {
   Price,
 } from "./bookPage.styled";
 
-export interface Book {
-  error?: string;
-  title: string;
-  subtitle?: string;
-  authors?: string;
-  publisher?: string;
-  language?: string;
-  isbn10?: string;
-  isbn13: string;
-  pages?: string;
-  year?: string;
-  rating?: string;
-  desc?: string;
-  price: string;
-  image: string;
-  url?: string;
-  pdf?: Object;
-  is_bookmarked?: boolean;
-}
-
 export function BookPage() {
   const { isbn13 } = useParams<{ isbn13: string }>();
   const apiPath = `https://api.itbook.store/1.0/books/${isbn13}`;
-  const [bookData, setBookData] = React.useState<Book>({
+  const [bookData, setBookData] = React.useState<BookDetailed>({
     title: "",
     subtitle: "",
     authors: "",
@@ -48,13 +29,12 @@ export function BookPage() {
     desc: "",
     price: "",
     image: "",
-    is_bookmarked: false,
   });
   const [isLoading, setIsLoading] = React.useState(false);
   React.useEffect(() => {
     const abortController = new AbortController();
     setIsLoading(true);
-    fetchBooks(apiPath)
+    fetchBook(apiPath)
       .then((response) => {
         setBookData(response);
         setIsLoading(false);

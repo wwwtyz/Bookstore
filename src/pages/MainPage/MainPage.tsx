@@ -1,7 +1,8 @@
 import React from "react";
 import { fetchBooks } from "../../api/fetchBooks";
 import { BookCard } from "../../components/BookCard/BookCard";
-import { Book } from "../Bookpage/BookPage";
+import { Book } from "../../types/book.types";
+
 import { BookList, MainContainer } from "./mainPage.styled";
 
 export interface FetchBookResponse {
@@ -14,12 +15,12 @@ export function MainPage() {
     total: "",
     books: [],
   });
-  const apiPath = "https://api.itbook.store/1.0/search/test";
+
   const [isLoading, setIsLoading] = React.useState(false);
   React.useEffect(() => {
     const abortController = new AbortController();
     setIsLoading(true);
-    fetchBooks(apiPath)
+    fetchBooks()
       .then((response) => {
         setBooksData(response);
         setIsLoading(false);

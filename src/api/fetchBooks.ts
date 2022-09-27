@@ -1,33 +1,15 @@
 import axios from "axios";
-import { Book } from "../pages/Bookpage/BookPage";
+import { Book } from "../types/book.types";
 
-export interface PostsResponse {
+const apiPath = "https://api.itbook.store/1.0/new";
+
+export interface BooksResponse {
   total: string;
-  error: string;
-  page: string;
   books: Book[];
-  title: string;
-  subtitle: string;
-  authors: string;
-  publisher: string;
-  language: string;
-  isbn13: string;
-  year: string;
-  rating: string;
-  desc: string;
-  price: string;
-  image: string;
 }
 
-export async function fetchBooks(
-  apiPath: string,
-  {
-    signal,
-  }: {
-    signal?: AbortController["signal"];
-  } = {}
-): Promise<PostsResponse> {
-  const { data } = await axios.get(apiPath, { params: signal });
+export async function fetchBooks(): Promise<BooksResponse> {
+  const { data } = await axios.get(apiPath);
 
   return data;
 }
