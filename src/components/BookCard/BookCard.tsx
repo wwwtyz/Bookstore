@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { fetchBooks } from "../../api/fetchBooks";
+import { fetchBook } from "../../api/fetchBook";
 import { AppRoute } from "../../enums/router";
-import { Book } from "../../pages/Bookpage/BookPage";
 import { Price } from "../../pages/Bookpage/bookPage.styled";
+import { Book, BookDetailed } from "../../types/book.types";
 import {
   BookCardContainer,
   ImageContainer,
@@ -13,10 +13,11 @@ import {
   AboutContainer,
   AboutBox,
 } from "./bookCard.styled";
+import StarsRating from "./StarsRaiting/StarsRating";
 
 export function BookCard({ book }: { book: Book }) {
   const apiPath = `https://api.itbook.store/1.0/books/${book.isbn13}`;
-  const [bookData, setBookData] = React.useState<Book>({
+  const [bookData, setBookData] = React.useState<BookDetailed>({
     title: "",
     subtitle: "",
     authors: "",
@@ -28,14 +29,13 @@ export function BookCard({ book }: { book: Book }) {
     desc: "",
     price: "",
     image: "",
-    is_bookmarked: false,
   });
   const [isLoading, setIsLoading] = React.useState(false);
 
   React.useEffect(() => {
     const abortController = new AbortController();
     setIsLoading(true);
-    fetchBooks(apiPath)
+    fetchBook(apiPath)
       .then((response) => {
         setBookData(response);
         setIsLoading(false);
@@ -48,6 +48,7 @@ export function BookCard({ book }: { book: Book }) {
       abortController.abort();
     };
   }, []);
+
   return (
     <BookCardContainer>
       <Link to={`${AppRoute.Books}/${book.isbn13}`}>
@@ -71,7 +72,7 @@ export function BookCard({ book }: { book: Book }) {
         <AboutBox>
           <PriceBox>
             <Price>{book.price}</Price>
-            <span>Rate: {bookData.rating}</span>
+            <StarsRating raiting={bookData.rating}></StarsRating>
           </PriceBox>
         </AboutBox>
       </AboutContainer>

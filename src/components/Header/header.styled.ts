@@ -19,7 +19,6 @@ export const HeaderContainer = styled.header`
   width: 100%;
 
   a * {
-    margin: 0 1rem;
     fill: var(--bs-color-text-invert);
     stroke: var(--bs-color-primary);
   }
@@ -57,7 +56,8 @@ export const SearchBarContainer = styled.div`
 `;
 
 export const ThemeSwitcherBox = styled.div`
-  padding: 0 var(--bs-spacing-7);
+  margin: 0 var(--bs-spacing-8);
+  padding: 1px;
 `;
 
 export const LinkContainer = styled.div`
@@ -66,6 +66,8 @@ export const LinkContainer = styled.div`
   align-items: center;
 
   * {
+    margin: var(--bs-spacing-8);
+    border-radius: 40%;
     fill: var(--bs-color-text-invert);
     stroke: var(--bs-color-primary);
 
