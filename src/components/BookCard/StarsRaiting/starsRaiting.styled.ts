@@ -1,6 +1,4 @@
 import styled from "@emotion/styled";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar as Star } from "@fortawesome/free-solid-svg-icons/faStar";
 
 export const RaitingContainer = styled.div`
   display: flex;

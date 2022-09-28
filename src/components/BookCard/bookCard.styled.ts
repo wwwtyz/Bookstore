@@ -1,12 +1,13 @@
-import styled from "@emotion/styled";
-import { Link } from "react-router-dom";
+import styled from '@emotion/styled';
+import { Link } from 'react-router-dom';
 
 export const BookCardContainer = styled.div`
   display: flex;
   flex-direction: column;
   max-width: 340px;
   flex: 1;
-  margin: 1rem;
+  padding: var(--bs-spacing-7);
+  border: 1px solid var(--bs-color-border);
 `;
 export const ImageContainer = styled.div`
   display: flex;

@@ -1,9 +1,11 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { fetchBook } from "../../api/fetchBook";
-import { AppRoute } from "../../enums/router";
-import { Price } from "../../pages/Bookpage/bookPage.styled";
-import { Book, BookDetailed } from "../../types/book.types";
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { fetchBook } from '../../api/fetchBook';
+import { AppRoute } from '../../enums/router';
+import { Price } from '../../pages/Bookpage/bookPage.styled';
+import { booksLoadingStateSelector } from '../../store/book.selectors';
+import { Book, BookDetailed } from '../../types/book.types';
 import {
   BookCardContainer,
   ImageContainer,
@@ -11,34 +13,32 @@ import {
   PriceBox,
   About,
   AboutContainer,
-  AboutBox,
-} from "./bookCard.styled";
-import StarsRating from "./StarsRaiting/StarsRating";
+  AboutBox
+} from './bookCard.styled';
+import StarsRating from './StarsRaiting/StarsRating';
 
 export function BookCard({ book }: { book: Book }) {
   const apiPath = `https://api.itbook.store/1.0/books/${book.isbn13}`;
   const [bookData, setBookData] = React.useState<BookDetailed>({
-    title: "",
-    subtitle: "",
-    authors: "",
-    publisher: "",
-    language: "",
-    isbn13: "",
-    year: "",
-    rating: "",
-    desc: "",
-    price: "",
-    image: "",
+    title: '',
+    subtitle: '',
+    authors: '',
+    publisher: '',
+    language: '',
+    isbn13: '',
+    year: '',
+    rating: '',
+    desc: '',
+    price: '',
+    image: ''
   });
-  const [isLoading, setIsLoading] = React.useState(false);
-
+  const loadingState = useSelector(booksLoadingStateSelector);
   React.useEffect(() => {
     const abortController = new AbortController();
-    setIsLoading(true);
+
     fetchBook(apiPath)
       .then((response) => {
         setBookData(response);
-        setIsLoading(false);
       })
       .catch((err) => {
         console.error(err);
@@ -53,14 +53,21 @@ export function BookCard({ book }: { book: Book }) {
     <BookCardContainer>
       <Link to={`${AppRoute.Books}/${book.isbn13}`}>
         <ImageContainer>
-          {isLoading ? <div>LOADING</div> : <img src={book.image} alt="" />}
+          {loadingState === 'pending' ? (
+            <div>LOADING</div>
+          ) : (
+            <img
+              src={book.image}
+              alt=""
+            />
+          )}
         </ImageContainer>
       </Link>
       <AboutContainer>
         <AboutBox>
           <Title to={`${AppRoute.Books}/${book.isbn13}`}>{book.title}</Title>
         </AboutBox>
-        {isLoading ? (
+        {loadingState === 'pending' ? (
           <div>LOADING</div>
         ) : (
           <AboutBox>

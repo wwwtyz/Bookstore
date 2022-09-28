@@ -1,4 +1,4 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
 export const PageContainer = styled.main`
   min-height: 100vh;
@@ -10,7 +10,7 @@ export const AppContainerBox = styled.div`
   display: flex;
   justify-content: center;
   max-width: 1120px;
-  padding-top: 100px;
+
   margin: 0 auto;
 `;
 

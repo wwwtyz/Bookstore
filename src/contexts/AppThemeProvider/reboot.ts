@@ -1,4 +1,4 @@
-import { css } from "@emotion/react";
+import { css } from '@emotion/react';
 
 import {
   appTheme,
@@ -6,8 +6,8 @@ import {
   FontWeight,
   SPACING,
   ThemeVariant,
-  TYPOGRAPHY,
-} from "./theme";
+  TYPOGRAPHY
+} from './theme';
 
 export const getRebootCSS = (themeVariant: ThemeVariant) => css`
   /*!
@@ -19,12 +19,12 @@ export const getRebootCSS = (themeVariant: ThemeVariant) => css`
   */
 
   :root {
-    --bs-font-sans-serif: "Inter", system-ui, -apple-system, "Segoe UI", Roboto,
-      "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif,
-      "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
-      "Noto Color Emoji";
+    --bs-font-sans-serif: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto,
+      'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', sans-serif,
+      'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+      'Noto Color Emoji';
     --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
-      "Liberation Mono", "Courier New", monospace;
+      'Liberation Mono', 'Courier New', monospace;
     --bs-body-font-family: var(--bs-font-sans-serif);
 
     --bs-color-bg-disabled: ${appTheme[themeVariant].colors.backgroundDisabled};
@@ -355,7 +355,7 @@ export const getRebootCSS = (themeVariant: ThemeVariant) => css`
 
     input,
     button {
-      border-radius: 2px;
+      border-radius: 10px;
     }
 
     button:focus:not(:focus-visible) {
@@ -367,7 +367,7 @@ export const getRebootCSS = (themeVariant: ThemeVariant) => css`
       text-transform: none;
     }
 
-    [role="button"] {
+    [role='button'] {
       cursor: pointer;
     }
 
@@ -384,16 +384,16 @@ export const getRebootCSS = (themeVariant: ThemeVariant) => css`
     }
 
     button,
-    [type="button"],
-    [type="reset"],
-    [type="submit"] {
+    [type='button'],
+    [type='reset'],
+    [type='submit'] {
       -webkit-appearance: button;
     }
 
     button:not(:disabled),
-    [type="button"]:not(:disabled),
-    [type="reset"]:not(:disabled),
-    [type="submit"]:not(:disabled) {
+    [type='button']:not(:disabled),
+    [type='reset']:not(:disabled),
+    [type='submit']:not(:disabled) {
       cursor: pointer;
     }
 
@@ -446,7 +446,7 @@ export const getRebootCSS = (themeVariant: ThemeVariant) => css`
       height: auto;
     }
 
-    [type="search"] {
+    [type='search'] {
       outline-offset: -2px;
       -webkit-appearance: textfield;
     }

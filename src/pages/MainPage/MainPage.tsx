@@ -1,19 +1,14 @@
-import React from "react";
-import { fetchBooks } from "../../api/fetchBooks";
-import { BookCard } from "../../components/BookCard/BookCard";
-import { Book } from "../../types/book.types";
+import React from 'react';
+import { fetchBooks } from '../../api/fetchBooks';
+import { BookCard } from '../../components/BookCard/BookCard';
+import { FetchBookResponse } from '../../types/book.types';
 
-import { BookList, MainContainer } from "./mainPage.styled";
-
-export interface FetchBookResponse {
-  total: string;
-  books: Book[];
-}
+import { BookList, MainContainer } from './mainPage.styled';
 
 export function MainPage() {
   const [booksData, setBooksData] = React.useState<FetchBookResponse>({
-    total: "",
-    books: [],
+    total: '',
+    books: []
   });
 
   const [isLoading, setIsLoading] = React.useState(false);
@@ -41,7 +36,10 @@ export function MainPage() {
       ) : (
         <BookList>
           {booksData.books.map((book) => (
-            <BookCard book={book} key={book.isbn13} />
+            <BookCard
+              book={book}
+              key={book.isbn13}
+            />
           ))}
         </BookList>
       )}

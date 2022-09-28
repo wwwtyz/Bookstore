@@ -1,4 +1,4 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
 export const HeaderWrap = styled.div`
   display: flex;
@@ -32,7 +32,7 @@ export const SearchBarContainer = styled.div`
   input {
     background-color: transparent;
     color: var(--bs-color-text);
-    border: 1px solid #dadada;
+    border: 1px solid var(--bs-color-border);
     height: var(--bs-spacing-4);
     padding: 15px;
     margin: 5px var(--bs-spacing-4) 0;
@@ -55,9 +55,15 @@ export const SearchBarContainer = styled.div`
   }
 `;
 
-export const ThemeSwitcherBox = styled.div`
-  margin: 0 var(--bs-spacing-8);
-  padding: 1px;
+export const ThemeSwitcherBox = styled.button`
+  border: none;
+  background: transparent;
+  padding: 3px;
+
+  svg {
+    width: 18px;
+    height: 18px;
+  }
 `;
 
 export const LinkContainer = styled.div`

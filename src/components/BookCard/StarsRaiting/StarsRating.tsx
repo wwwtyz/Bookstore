@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 import {
   RaitingActive,
   RaitingBox,
   RaitingContainer,
   RaitingStar,
-  RaitingStars,
-} from "./starsRaiting.styled";
+  RaitingStars
+} from './starsRaiting.styled';
 
 function StarsRating({ raiting }: { raiting: string }) {
   const stars = Array(5).fill(0);
@@ -15,7 +15,14 @@ function StarsRating({ raiting }: { raiting: string }) {
         <RaitingActive style={{ width: `${+raiting * 20}%` }}></RaitingActive>
         <RaitingStars>
           {stars.map((_, i) => {
-            return <RaitingStar type="radio" value={i} name={"raiting"} />;
+            return (
+              <RaitingStar
+                type="radio"
+                value={i}
+                name={'raiting'}
+                key={i}
+              />
+            );
           })}
         </RaitingStars>
       </RaitingBox>
