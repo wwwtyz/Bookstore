@@ -1,4 +1,4 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
 export const HeaderWrap = styled.div`
   display: flex;
@@ -17,6 +17,11 @@ export const HeaderContainer = styled.header`
   margin: auto;
   max-width: 1120px;
   width: 100%;
+
+  a * {
+    fill: var(--bs-color-text-invert);
+    stroke: var(--bs-color-primary);
+  }
 `;
 
 export const SearchBarContainer = styled.div`
@@ -27,10 +32,10 @@ export const SearchBarContainer = styled.div`
   input {
     background-color: transparent;
     color: var(--bs-color-text);
-    border: 1px solid #dadada;
+    border: 1px solid var(--bs-color-border);
     height: var(--bs-spacing-4);
-    padding: var(--bs-spacing-8) var(--bs-spacing-5);
-    margin: 0 var(--bs-spacing-4);
+    padding: 15px;
+    margin: 5px var(--bs-spacing-4) 0;
     flex: 1;
   }
 
@@ -39,26 +44,50 @@ export const SearchBarContainer = styled.div`
     opacity: 0.8;
   }
 
-  img {
+  svg {
+    fill: var(--bs-color-text-invert);
     position: absolute;
     top: 0;
     right: 0;
-    transform: translate(-200%, 35%);
+    transform: translate(-300%, 75%);
     width: var(--bs-spacing-7);
     height: auto;
+  }
+`;
+
+export const ThemeSwitcherBox = styled.button`
+  border: none;
+  background: transparent;
+  padding: 3px;
+
+  svg {
+    width: 18px;
+    height: 18px;
   }
 `;
 
 export const LinkContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
 
-  a {
-    margin: 0 var(--bs-spacing-8);
-    padding: var(--bs-spacing-8);
+  * {
+    margin: var(--bs-spacing-8);
+    border-radius: 40%;
+    fill: var(--bs-color-text-invert);
+    stroke: var(--bs-color-primary);
 
     :hover {
       background: var(--bs-color-bg-medium);
+    }
+
+    :hover * {
+      fill: #fc857f;
+    }
+
+    :active * {
+      fill: #fc857f;
+      stroke: #fc857f;
     }
   }
 `;
