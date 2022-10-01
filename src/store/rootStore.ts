@@ -2,9 +2,13 @@ import { configureStore } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
 import { bookReducer } from './book.slice';
 
+import { cartReducer } from './cart/cart.slice';
+
 export const rootStore = configureStore({
   reducer: {
-    book: bookReducer
+    book: bookReducer,
+
+    cart: cartReducer
   }
 });
 

@@ -1,38 +1,46 @@
-import React from "react";
-import { Link, useParams } from "react-router-dom";
-import { fetchBook } from "../../api/fetchBook";
+import React from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { fetchBook } from '../../api/fetchBook';
 
-import Heart from "../../assets/header/heart.svg";
-import { AppRoute } from "../../enums/router";
-import { BookDetailed } from "../../types/book.types";
+import Heart from '../../assets/header/heart.svg';
+import { AppRoute } from '../../enums/router';
+import {
+  addToCartAction,
+  removeFromCartAction
+} from '../../store/cart/cart.actions';
+import { useAppDispatch } from '../../store/rootStore';
+import { BookDetailed } from '../../types/book.types';
+
 import {
   AboutBox,
   BookAboutContainer,
   BookContainer,
   BookImageContainer,
   ImageBox,
-  Price,
-} from "./bookPage.styled";
+  Price
+} from './bookPage.styled';
 
 export function BookPage() {
   const { isbn13 } = useParams<{ isbn13: string }>();
   const apiPath = `https://api.itbook.store/1.0/books/${isbn13}`;
   const [bookData, setBookData] = React.useState<BookDetailed>({
-    title: "",
-    subtitle: "",
-    authors: "",
-    publisher: "",
-    language: "",
-    isbn13: "",
-    year: "",
-    rating: "",
-    desc: "",
-    price: "",
-    image: "",
+    title: '',
+    subtitle: '',
+    authors: '',
+    publisher: '',
+    language: '',
+    isbn13: '',
+    year: '',
+    rating: '',
+    desc: '',
+    price: '',
+    image: ''
   });
+  const [inCart, setInCart] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
+  const dispatch = useAppDispatch();
+
   React.useEffect(() => {
-    const abortController = new AbortController();
     setIsLoading(true);
     fetchBook(apiPath)
       .then((response) => {
@@ -42,10 +50,6 @@ export function BookPage() {
       .catch((err) => {
         console.error(err);
       });
-
-    return () => {
-      abortController.abort();
-    };
   }, []);
 
   return (
@@ -59,10 +63,16 @@ export function BookPage() {
           <BookContainer>
             <BookImageContainer>
               <ImageBox>
-                <img src={bookData.image} alt="" />
+                <img
+                  src={bookData.image}
+                  alt=""
+                />
               </ImageBox>
               <div>
-                <img src={Heart} alt="Heart" />
+                <img
+                  src={Heart}
+                  alt="Heart"
+                />
               </div>
             </BookImageContainer>
 
@@ -73,7 +83,7 @@ export function BookPage() {
               </AboutBox>
               <AboutBox>
                 <span>Author</span>
-                <span style={{ maxWidth: "50%" }}>{bookData.authors}</span>
+                <span style={{ maxWidth: '50%' }}>{bookData.authors}</span>
               </AboutBox>
               <AboutBox>
                 <span>Publisher</span>
@@ -87,7 +97,17 @@ export function BookPage() {
                 <span>Format</span>
                 <span>Papper book/ ebook(pdf)</span>
               </AboutBox>
-              <button>ADD TO CART</button>
+              <button
+                onClick={() => dispatch(addToCartAction(bookData))}
+                // onClick={() => {
+                //   setInCart((perv) => !perv);
+                //   inCart
+                //     ? dispatch(removeFromCart(bookData.isbn13))
+                //     : dispatch(addToCart(bookData.isbn13));
+                // }}
+              >
+                ADD TO CART
+              </button>
             </BookAboutContainer>
           </BookContainer>
         )}

@@ -5,7 +5,7 @@ export async function fetchSearchBooks({
   ...props
 }): Promise<FetchBookResponse> {
   const { data } = await axios.get<FetchBookResponse>(
-    ` https://api.itbook.store/1.0/search/${props.search}/${props.page}`
+    `${process.env.REACT_APP_API_PATH}/search/${props.search}/${props.page}`
   );
 
   return data;

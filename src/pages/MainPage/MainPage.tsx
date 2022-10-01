@@ -1,4 +1,6 @@
 import React from 'react';
+
+import { RevolvingDot } from 'react-loader-spinner';
 import { fetchBooks } from '../../api/fetchBooks';
 import { BookCard } from '../../components/BookCard/BookCard';
 import { FetchBookResponse } from '../../types/book.types';
@@ -32,7 +34,17 @@ export function MainPage() {
     <MainContainer>
       <h1>New Releases Books</h1>
       {isLoading ? (
-        <div>LOADING</div>
+        <RevolvingDot
+          height="500"
+          width="500"
+          radius="100"
+          color="gray"
+          secondaryColor="lightblue"
+          ariaLabel="revolving-dot-loading"
+          wrapperStyle={{}}
+          wrapperClass=""
+          visible={true}
+        />
       ) : (
         <BookList>
           {booksData.books.map((book) => (

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchBook } from '../../api/fetchBook';
@@ -18,7 +18,8 @@ import {
 import StarsRating from './StarsRaiting/StarsRating';
 
 export function BookCard({ book }: { book: Book }) {
-  const apiPath = `https://api.itbook.store/1.0/books/${book.isbn13}`;
+  const apiPath = `${process.env.REACT_APP_API_PATH}/books/${book.isbn13}`;
+  const [loading, setLoading] = useState(false);
   const [bookData, setBookData] = React.useState<BookDetailed>({
     title: '',
     subtitle: '',
@@ -34,8 +35,7 @@ export function BookCard({ book }: { book: Book }) {
   });
   const loadingState = useSelector(booksLoadingStateSelector);
   React.useEffect(() => {
-    const abortController = new AbortController();
-
+    setLoading(true);
     fetchBook(apiPath)
       .then((response) => {
         setBookData(response);
@@ -43,15 +43,12 @@ export function BookCard({ book }: { book: Book }) {
       .catch((err) => {
         console.error(err);
       });
-
-    return () => {
-      abortController.abort();
-    };
+    setLoading(false);
   }, []);
 
   return (
     <BookCardContainer>
-      <Link to={`${AppRoute.Books}/${book.isbn13}`}>
+      <Link to={`/${AppRoute.Books}/${book.isbn13}`}>
         <ImageContainer>
           {loadingState === 'pending' ? (
             <div>LOADING</div>
@@ -65,9 +62,9 @@ export function BookCard({ book }: { book: Book }) {
       </Link>
       <AboutContainer>
         <AboutBox>
-          <Title to={`${AppRoute.Books}/${book.isbn13}`}>{book.title}</Title>
+          <Title to={`/${AppRoute.Books}/${book.isbn13}`}>{book.title}</Title>
         </AboutBox>
-        {loadingState === 'pending' ? (
+        {loading ? (
           <div>LOADING</div>
         ) : (
           <AboutBox>
