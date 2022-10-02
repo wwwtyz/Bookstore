@@ -17,14 +17,10 @@ import {
   VertContainer,
   FavouriteAboutBox
 } from '../CartCard/cartCartd.styled';
-import { favouriteSelector } from '../../store/favourite/favourite.selectors';
 import StarsRating from '../BookCard/StarsRaiting/StarsRating';
 import { removeFromFavouriteAction } from '../../store/favourite/favourite.actions';
 
 export default function FavouriteCard({ book }: { book: BookDetailed }) {
-  const cartData: BookDetailed[] = useSelector(favouriteSelector);
-  const countData = cartData.filter((e) => e.isbn13 === book.isbn13);
-
   const dispatch = useAppDispatch();
 
   return (

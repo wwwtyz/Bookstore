@@ -127,7 +127,7 @@ export function BookPage() {
                   dispatch(addToFavouriteAction(bookData));
                 }}
               >
-                {dataC[0]?.inFavourite ? (
+                {dataF[0]?.inFavourite ? (
                   <span> IN Favourite</span>
                 ) : (
                   <span> ADD TO Favourite</span>

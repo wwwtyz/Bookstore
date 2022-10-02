@@ -1,18 +1,25 @@
-import React, { FC } from "react";
+import * as React from 'react';
 import {
   InputContainer,
-  InputError,
   InputLabel,
   StyledInput,
-} from "./input.styled";
-import { InputProps } from "./input.types";
+  InputError
+} from './input.styled';
+export interface InputProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
+  error?: string;
+  label: string;
+}
 
-export function Input({ label, error, id, ...props }: InputProps) {
-  return (
-    <InputContainer>
+export const Input = React.forwardRef<HTMLInputElement, InputProps>(
+  ({ label, id, error, ...passThroughProps }, ref) => (
+    <InputContainer ref={ref}>
       <InputLabel htmlFor={id}>{label}</InputLabel>
-      <StyledInput id={id} {...props} />
+      <StyledInput
+        id={id}
+        {...passThroughProps}
+      />
       <InputError>{error}</InputError>
     </InputContainer>
-  );
-}
+  )
+);

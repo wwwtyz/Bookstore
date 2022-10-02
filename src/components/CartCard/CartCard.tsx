@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useSelector } from 'react-redux';
-import { faCross as Delete } from '@fortawesome/free-solid-svg-icons/faCross';
 
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../enums/router';
