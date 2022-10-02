@@ -5,7 +5,11 @@ import { faCross as Delete } from '@fortawesome/free-solid-svg-icons/faCross';
 
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../enums/router';
-import { removeFromCartAction } from '../../store/cart/cart.actions';
+import {
+  addNumAction,
+  minusNumAction,
+  removeFromCartAction
+} from '../../store/cart/cart.actions';
 import {
   cartSelector,
   totalCostSelector
@@ -26,8 +30,9 @@ import {
 
 export default function CartCard({ book }: { book: BookDetailed }) {
   const cartData: BookDetailed[] = useSelector(cartSelector);
+  const countData = cartData.filter((e) => e.isbn13 === book.isbn13);
 
-  const [count, setCount] = useState(1);
+  // const [count, setCount] = useState(1);
   const price = Number(book.price.slice(1));
 
   const dispatch = useAppDispatch();
@@ -53,19 +58,19 @@ export default function CartCard({ book }: { book: BookDetailed }) {
           </p>
           <CounterBox>
             <CartButton
-              disabled={count <= 1}
+              disabled={Number(countData[0].numInCart) <= 1}
               onClick={() => {
-                setCount(count - 1);
                 dispatch(cartActions.decremetnQt(price));
+                dispatch(minusNumAction(book));
               }}
             >
               -
             </CartButton>
-            <span>{count}</span>
+            <span>{Number(countData[0].numInCart)}</span>
             <CartButton
               onClick={() => {
-                setCount(count + 1);
                 dispatch(cartActions.incremetnQt(price));
+                dispatch(addNumAction(book));
               }}
             >
               +
@@ -74,14 +79,16 @@ export default function CartCard({ book }: { book: BookDetailed }) {
         </CartAboutBox>
         <VertContainer>
           {book.price.slice(0, 1)}
-          {(price * count).toFixed(2)}
+          {(price * Number(countData[0].numInCart)).toFixed(2)}
         </VertContainer>
         <VertContainer>
           <CartButton
             onClick={() => {
               dispatch(removeFromCartAction(book));
               dispatch(
-                cartActions.decremetnQt(Number((price * count).toFixed(2)))
+                cartActions.decremetnQt(
+                  Number((price * Number(countData[0].numInCart)).toFixed(2))
+                )
               );
             }}
           >

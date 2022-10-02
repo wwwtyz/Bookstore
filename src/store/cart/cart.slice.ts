@@ -15,11 +15,12 @@ const cartSlice = createSlice({
   },
   reducers: {
     addToCart: (state, { payload }: { payload: BookDetailed }) => {
-      console.log(state.cartList);
-
       state.cartList.push(payload);
       state.cartList.filter((e) =>
         e.isbn13 === payload.isbn13 ? (e.inCart = true) : null
+      );
+      state.cartList.filter((e) =>
+        e.isbn13 === payload.isbn13 ? (e.numInCart = 1) : null
       );
     },
 
@@ -34,6 +35,20 @@ const cartSlice = createSlice({
     },
     decremetnQt: (state, action) => {
       state.totalCost -= action.payload;
+    },
+    setAddNum: (state, { payload }: { payload: BookDetailed }) => {
+      state.cartList.filter((e) =>
+        e.isbn13 === payload.isbn13
+          ? (e.numInCart = Number(e.numInCart) + 1)
+          : null
+      );
+    },
+    setMinusNum: (state, { payload }: { payload: BookDetailed }) => {
+      state.cartList.filter((e) =>
+        e.isbn13 === payload.isbn13
+          ? (e.numInCart = Number(e.numInCart) - 1)
+          : null
+      );
     }
   }
 });

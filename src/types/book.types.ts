@@ -24,6 +24,7 @@ export interface BookDetailed {
   url?: string;
   year: string;
   inCart?: boolean;
+  numInCart?: number;
   inFavourite?: boolean;
 }
 

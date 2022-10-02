@@ -28,3 +28,27 @@ export const removeFromCartAction =
       (error: SerializedError) => console.error(error);
     }
   };
+export const addNumAction =
+  (payload: BookDetailed) => (dispatch: AppDispatch) => {
+    try {
+      dispatch(cartActions.setAddNum(payload));
+      localStorage.setItem(
+        'cart',
+        JSON.stringify(rootStore.getState().cart.cartList)
+      );
+    } catch {
+      (error: SerializedError) => console.error(error);
+    }
+  };
+export const minusNumAction =
+  (payload: BookDetailed) => (dispatch: AppDispatch) => {
+    try {
+      dispatch(cartActions.setMinusNum(payload));
+      localStorage.setItem(
+        'cart',
+        JSON.stringify(rootStore.getState().cart.cartList)
+      );
+    } catch {
+      (error: SerializedError) => console.error(error);
+    }
+  };

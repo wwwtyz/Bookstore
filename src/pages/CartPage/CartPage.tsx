@@ -1,3 +1,4 @@
+import { divide } from 'lodash';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useStateList } from 'react-use';
@@ -19,7 +20,6 @@ import { BookDetailed } from '../../types/book.types';
 export default function CartPage() {
   const cartData: BookDetailed[] = useSelector(cartSelector);
   const totalCost: number = useSelector(totalCostSelector);
-  console.log(totalCost.toFixed(2));
 
   return (
     <div>
@@ -32,27 +32,33 @@ export default function CartPage() {
           />
         ))}
       </div>
-      <TotalContainer>
-        <TotalBox>
-          <SumBox>
-            <span>Sum Total: </span>
-            <span>{totalCost.toFixed(2)}$</span>
-          </SumBox>
-          <SumBox>
-            <span>VAT: </span>
-            <span>{(totalCost * 0.2).toFixed(2)}$</span>{' '}
-          </SumBox>
-          <SumBox>
-            <TotalSpan>TOTAL COST:</TotalSpan>{' '}
-            <TotalSpan>{(totalCost * 1.2).toFixed(2)}$</TotalSpan>
-          </SumBox>
-          <button
-            onClick={() => alert('Knock-knock. your order has been delivered')}
-          >
-            CHECK OUT
-          </button>
-        </TotalBox>
-      </TotalContainer>
+      {cartData.length ? (
+        <TotalContainer>
+          <TotalBox>
+            <SumBox>
+              <span>Sum Total: </span>
+              <span>{totalCost.toFixed(2)}$</span>
+            </SumBox>
+            <SumBox>
+              <span>VAT: </span>
+              <span>{(totalCost * 0.2).toFixed(2)}$</span>{' '}
+            </SumBox>
+            <SumBox>
+              <TotalSpan>TOTAL COST:</TotalSpan>{' '}
+              <TotalSpan>{(totalCost * 1.2).toFixed(2)}$</TotalSpan>
+            </SumBox>
+            <button
+              onClick={() =>
+                alert('Knock-knock. your order has been delivered')
+              }
+            >
+              CHECK OUT
+            </button>
+          </TotalBox>
+        </TotalContainer>
+      ) : (
+        <h2>Is Empty</h2>
+      )}
     </div>
   );
 }
