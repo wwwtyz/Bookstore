@@ -23,6 +23,8 @@ export interface BookDetailed {
   rating: string;
   url?: string;
   year: string;
+  inCart?: boolean;
+  inFavourite?: boolean;
 }
 
 export interface FetchBookResponse {

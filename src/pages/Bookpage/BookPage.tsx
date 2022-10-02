@@ -1,13 +1,14 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import { fetchBook } from '../../api/fetchBook';
 
 import Heart from '../../assets/header/heart.svg';
+import StarsRating from '../../components/BookCard/StarsRaiting/StarsRating';
 import { AppRoute } from '../../enums/router';
-import {
-  addToCartAction,
-  removeFromCartAction
-} from '../../store/cart/cart.actions';
+import { addToCartAction } from '../../store/cart/cart.actions';
+import { cartSelector } from '../../store/cart/cart.selectors';
+import { cartActions } from '../../store/cart/cart.slice';
 import { useAppDispatch } from '../../store/rootStore';
 import { BookDetailed } from '../../types/book.types';
 
@@ -36,9 +37,10 @@ export function BookPage() {
     price: '',
     image: ''
   });
-  const [inCart, setInCart] = React.useState(false);
+  const cartData: BookDetailed[] = useSelector(cartSelector);
   const [isLoading, setIsLoading] = React.useState(false);
   const dispatch = useAppDispatch();
+  const data = cartData.filter((e) => e.isbn13 === bookData.isbn13);
 
   React.useEffect(() => {
     setIsLoading(true);
@@ -79,7 +81,9 @@ export function BookPage() {
             <BookAboutContainer>
               <AboutBox>
                 <Price>{bookData.price}</Price>
-                <span>Rate: {bookData.rating} </span>
+                <span>
+                  <StarsRating raiting={bookData.rating} />
+                </span>
               </AboutBox>
               <AboutBox>
                 <span>Author</span>
@@ -98,15 +102,20 @@ export function BookPage() {
                 <span>Papper book/ ebook(pdf)</span>
               </AboutBox>
               <button
-                onClick={() => dispatch(addToCartAction(bookData))}
-                // onClick={() => {
-                //   setInCart((perv) => !perv);
-                //   inCart
-                //     ? dispatch(removeFromCart(bookData.isbn13))
-                //     : dispatch(addToCart(bookData.isbn13));
-                // }}
+                disabled={data[0]?.inCart}
+                onClick={() => {
+                  dispatch(addToCartAction(bookData));
+
+                  dispatch(
+                    cartActions.incremetnQt(Number(bookData.price.slice(1)))
+                  );
+                }}
               >
-                ADD TO CART
+                {data[0]?.inCart ? (
+                  <span> IN CART</span>
+                ) : (
+                  <span> ADD TO CART</span>
+                )}
               </button>
             </BookAboutContainer>
           </BookContainer>

@@ -76,7 +76,7 @@ export function BookCard({ book }: { book: Book }) {
         <AboutBox>
           <PriceBox>
             <Price>{book.price}</Price>
-            <StarsRating raiting={bookData.rating}></StarsRating>
+            <StarsRating raiting={bookData.rating} />
           </PriceBox>
         </AboutBox>
       </AboutContainer>
