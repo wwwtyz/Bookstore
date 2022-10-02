@@ -1,4 +1,8 @@
-import { PaginationContainer, PagesContainer } from './pagination.styled';
+import {
+  PaginationContainer,
+  PagesContainer,
+  ButtonMini
+} from './pagination.styled';
 import { getSections } from './pagination.utils';
 
 export function Pagination({
@@ -13,41 +17,41 @@ export function Pagination({
   const sections = getSections(currentPage, total);
   return (
     <PaginationContainer>
-      <button
+      <ButtonMini
         disabled={Number(currentPage) <= 1}
         onClick={() => setCurrentPage(String(Number(currentPage) - 1))}
       >
         {' '}
         {'<--'} Prev
-      </button>
+      </ButtonMini>
       <PagesContainer>
         {sections.start.map((page) => (
-          <button
+          <ButtonMini
             key={page}
             disabled={page == currentPage}
             onClick={() => setCurrentPage('' + page)}
           >
             {page}
-          </button>
+          </ButtonMini>
         ))}
-        {sections.hasDelimiter && <button>...</button>}
+        {sections.hasDelimiter && <ButtonMini>...</ButtonMini>}
         {sections.end &&
           sections.end.map((page) => (
-            <button
+            <ButtonMini
               key={page}
               onClick={() => setCurrentPage(page)}
               disabled={page === currentPage}
             >
               {page}
-            </button>
+            </ButtonMini>
           ))}
       </PagesContainer>
-      <button
+      <ButtonMini
         disabled={Number(currentPage) >= Number(total)}
         onClick={() => setCurrentPage(String(Number(currentPage) + 1))}
       >
         Next {'-->'}
-      </button>
+      </ButtonMini>
     </PaginationContainer>
   );
 }

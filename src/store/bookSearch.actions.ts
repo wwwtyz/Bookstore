@@ -1,5 +1,4 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { fetchBook } from '../api/fetchBook';
 import { fetchSearchBooks } from '../api/fetchSerachBooks';
 
 export const requestBooks = createAsyncThunk<

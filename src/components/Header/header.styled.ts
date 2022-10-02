@@ -14,12 +14,12 @@ export const HeaderContainer = styled.header`
   justify-content: space-between;
   align-items: center;
   height: 100px;
-  margin: auto;
+  margin: 0 auto;
   max-width: 1120px;
   width: 100%;
 
   a * {
-    fill: var(--bs-color-text-invert);
+    fill: var(--bs-color-text);
     stroke: var(--bs-color-primary);
   }
 `;
@@ -45,7 +45,7 @@ export const SearchBarContainer = styled.div`
   }
 
   svg {
-    fill: var(--bs-color-text-invert);
+    fill: var(--bs-color-text);
     position: absolute;
     top: 0;
     right: 0;
@@ -74,7 +74,7 @@ export const LinkContainer = styled.div`
   * {
     margin: var(--bs-spacing-8);
     border-radius: 40%;
-    fill: var(--bs-color-text-invert);
+    fill: var(--bs-color-text);
     stroke: var(--bs-color-primary);
 
     :hover {

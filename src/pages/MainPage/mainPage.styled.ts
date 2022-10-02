@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 
 export const MainContainer = styled.div`
   min-height: 50vh;
+  margin: 0 auto;
 `;
 
 export const BookList = styled.div`

@@ -37,6 +37,7 @@ export const getRebootCSS = (themeVariant: ThemeVariant) => css`
     --bs-color-primary: ${appTheme[themeVariant].colors.primary};
     --bs-color-text-disabled: ${appTheme[themeVariant].colors.textDisabled};
     --bs-color-text-invert: ${appTheme[themeVariant].colors.textInvert};
+    --bs-color-invert: ${appTheme[themeVariant].colors.invert};
     --bs-color-text: ${appTheme[themeVariant].colors.text};
 
     --bs-body-font-size: ${TYPOGRAPHY.mobile.body.fontSize};

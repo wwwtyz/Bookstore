@@ -159,7 +159,8 @@ const darkTheme = {
     primary: '#5B5A62',
     text: '#F1F1F1',
     textDisabled: '#b2b2b2',
-    textInvert: '#FFFFFF'
+    textInvert: '#313037',
+    invert: '#F4EEFD'
   }
 };
 
@@ -175,7 +176,8 @@ const lightTheme = {
     primary2: '#F4EEFD',
     text: '#323537',
     textDisabled: '#8D8E97',
-    textInvert: '#313037'
+    textInvert: '#ffffff',
+    invert: '#5B5A62'
   }
 };
 

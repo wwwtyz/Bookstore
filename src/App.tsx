@@ -5,8 +5,11 @@ import { AppThemeProvider } from './contexts/AppThemeProvider/AppThemeProvider';
 import { AppRoute } from './enums/router';
 
 import { MainLayout } from './MainLayout/MainLayout';
+import { LoginPage } from './pages/Authorization/LoginPage';
+import { RegistrationPage } from './pages/Authorization/RegistrationPage';
 import { BookPage } from './pages/Bookpage/BookPage';
 import CartPage from './pages/CartPage/CartPage';
+import FavouritePage from './pages/FavouritePage/FavouritePage';
 import { MainPage } from './pages/MainPage/MainPage';
 import SearchPage from './pages/SearchPage/SearchPage';
 
@@ -31,8 +34,20 @@ function App() {
             element={<CartPage />}
           />
           <Route
+            path={`${AppRoute.Favourite}`}
+            element={<FavouritePage />}
+          />
+          <Route
             path={`${AppRoute.Search}`}
             element={<SearchPage />}
+          />
+          <Route
+            path={`${AppRoute.Login}`}
+            element={<LoginPage />}
+          />
+          <Route
+            path={`${AppRoute.Register}`}
+            element={<RegistrationPage />}
           />
         </Route>
         <Route

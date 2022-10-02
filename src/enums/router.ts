@@ -3,5 +3,9 @@ export enum AppRoute {
   Books = 'books',
   Cart = 'cart',
   Search = 'search',
-  NotFound = '404'
+  Favourite = 'favourite',
+  NotFound = '404',
+  Register = '/Register',
+  Login = 'Login',
+  Activate = 'Activate'
 }
