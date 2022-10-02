@@ -9,6 +9,8 @@ import { AppRoute } from '../../enums/router';
 import { addToCartAction } from '../../store/cart/cart.actions';
 import { cartSelector } from '../../store/cart/cart.selectors';
 import { cartActions } from '../../store/cart/cart.slice';
+import { addToFavouriteAction } from '../../store/favourite/favourite.actions';
+import { favouriteSelector } from '../../store/favourite/favourite.selectors';
 import { useAppDispatch } from '../../store/rootStore';
 import { BookDetailed } from '../../types/book.types';
 
@@ -38,9 +40,11 @@ export function BookPage() {
     image: ''
   });
   const cartData: BookDetailed[] = useSelector(cartSelector);
+  const FavouriteData: BookDetailed[] = useSelector(favouriteSelector);
   const [isLoading, setIsLoading] = React.useState(false);
   const dispatch = useAppDispatch();
-  const data = cartData.filter((e) => e.isbn13 === bookData.isbn13);
+  const dataC = cartData.filter((e) => e.isbn13 === bookData.isbn13);
+  const dataF = FavouriteData.filter((e) => e.isbn13 === bookData.isbn13);
 
   React.useEffect(() => {
     setIsLoading(true);
@@ -102,7 +106,7 @@ export function BookPage() {
                 <span>Papper book/ ebook(pdf)</span>
               </AboutBox>
               <button
-                disabled={data[0]?.inCart}
+                disabled={dataC[0]?.inCart}
                 onClick={() => {
                   dispatch(addToCartAction(bookData));
 
@@ -111,10 +115,22 @@ export function BookPage() {
                   );
                 }}
               >
-                {data[0]?.inCart ? (
+                {dataC[0]?.inCart ? (
                   <span> IN CART</span>
                 ) : (
                   <span> ADD TO CART</span>
+                )}
+              </button>
+              <button
+                disabled={dataF[0]?.inFavourite}
+                onClick={() => {
+                  dispatch(addToFavouriteAction(bookData));
+                }}
+              >
+                {dataC[0]?.inFavourite ? (
+                  <span> IN Favourite</span>
+                ) : (
+                  <span> ADD TO Favourite</span>
                 )}
               </button>
             </BookAboutContainer>

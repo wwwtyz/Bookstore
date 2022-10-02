@@ -18,6 +18,13 @@ export const CartAboutBox = styled.div`
   padding: 1rem;
   flex: 4;
 `;
+export const FavouriteAboutBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  * {
+    font-size: var(--bs-headline-3-font-size);
+  }
+`;
 export const CounterBox = styled.div`
   display: flex;
   justify-content: flex-start;
@@ -63,5 +70,26 @@ export const CartButton = styled.button`
   }
   &:disabled {
     color: var(--bs-color-text-disabled);
+  }
+
+  * {
+    margin: var(--bs-spacing-8);
+    border-radius: 40%;
+    fill: #fc857f;
+    stroke: #fc857f;
+
+    :hover {
+      background: var(--bs-color-bg-medium);
+    }
+
+    :hover * {
+      fill: var(--bs-color-text);
+      stroke: var(--bs-color-primary);
+    }
+
+    :active * {
+      fill: var(--bs-color-text);
+      stroke: #fc857f;
+    }
   }
 `;

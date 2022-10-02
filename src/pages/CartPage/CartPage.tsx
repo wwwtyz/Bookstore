@@ -1,8 +1,6 @@
-import { divide } from 'lodash';
-import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { useStateList } from 'react-use';
+import React from 'react';
 
+import { useSelector } from 'react-redux';
 import CartCard from '../../components/CartCard/CartCard';
 import {
   SumBox,
@@ -10,7 +8,7 @@ import {
   TotalContainer,
   TotalSpan
 } from '../../components/CartCard/cartCartd.styled';
-
+import { PageContainer } from '../../MainLayout/layout.styled';
 import {
   cartSelector,
   totalCostSelector
@@ -22,7 +20,7 @@ export default function CartPage() {
   const totalCost: number = useSelector(totalCostSelector);
 
   return (
-    <div>
+    <PageContainer>
       <h1>Your Cart</h1>
       <div>
         {cartData.map((book: BookDetailed) => (
@@ -59,6 +57,6 @@ export default function CartPage() {
       ) : (
         <h2>Is Empty</h2>
       )}
-    </div>
+    </PageContainer>
   );
 }

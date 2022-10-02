@@ -3,5 +3,6 @@ export enum AppRoute {
   Books = 'books',
   Cart = 'cart',
   Search = 'search',
+  Favourite = 'favourite',
   NotFound = '404'
 }
