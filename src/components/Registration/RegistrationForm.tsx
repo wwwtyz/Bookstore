@@ -4,7 +4,8 @@ import { AppRoute } from '../../enums/router';
 import {
   FormContainer,
   ConfirmSection,
-  PrimaryLink
+  PrimaryLink,
+  ButtonBig
 } from './authorization.styled';
 import { FormProps } from './SignInForm';
 
@@ -48,17 +49,17 @@ const RegistrationForm: React.FC<FormProps> = ({ handleClick }) => {
         type="password"
       />
       <ConfirmSection>
-        <button
+        <ButtonBig
           disabled={
             !name || !email || !pass || !confirmPass || pass !== confirmPass
           }
           onClick={() => handleClick(email, pass)}
         >
           Sign Up
-        </button>
+        </ButtonBig>
 
         <div>
-          Already have an account?{' '}
+          Already have an account?{'    '}
           <PrimaryLink to={`/${AppRoute.Login}`}> Sign In</PrimaryLink>
         </div>
       </ConfirmSection>

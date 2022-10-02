@@ -2,7 +2,11 @@ import { FC, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../enums/router';
 import { Input } from '../Input/Input';
-import { PrimaryLink } from './authorization.styled';
+import {
+  ButtonBig,
+  ContentContainer,
+  PrimaryLink
+} from './authorization.styled';
 
 export interface FormProps {
   handleClick: (email: string, pass: string, username?: string) => void;
@@ -14,7 +18,7 @@ const SignInForm: FC<FormProps> = ({ handleClick }) => {
 
   return (
     <>
-      <div>
+      <ContentContainer>
         <Input
           type="email"
           value={email}
@@ -27,12 +31,12 @@ const SignInForm: FC<FormProps> = ({ handleClick }) => {
           value={pass}
           onChange={(e) => setPass(e.target.value)}
           placeholder="Your password"
-          label={"'Password"}
+          label={'Password'}
         />
-        <button onClick={() => handleClick(email, pass)}>SignIn</button>
-      </div>
+        <ButtonBig onClick={() => handleClick(email, pass)}>Sign In</ButtonBig>
+      </ContentContainer>
       <div>
-        Don’t have an account?
+        Don’t have an account?{'    '}
         <PrimaryLink to={AppRoute.Register}>Sign Up</PrimaryLink>
       </div>
     </>

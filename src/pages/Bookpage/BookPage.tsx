@@ -5,6 +5,10 @@ import { fetchBook } from '../../api/fetchBook';
 
 import Heart from '../../assets/header/heart.svg';
 import StarsRating from '../../components/BookCard/StarsRaiting/StarsRating';
+import {
+  ButtonBig,
+  PrimaryLink
+} from '../../components/Registration/authorization.styled';
 import { AppRoute } from '../../enums/router';
 import { addToCartAction } from '../../store/cart/cart.actions';
 import { cartSelector } from '../../store/cart/cart.selectors';
@@ -61,7 +65,7 @@ export function BookPage() {
   return (
     <>
       <div>
-        <Link to={`${AppRoute.Main}`}>Back to main</Link>
+        <PrimaryLink to={`${AppRoute.Main}`}>Back to main</PrimaryLink>
         <h2>{bookData.title}</h2>
         {isLoading ? (
           <div>LOADING</div>
@@ -105,7 +109,7 @@ export function BookPage() {
                 <span>Format</span>
                 <span>Papper book/ ebook(pdf)</span>
               </AboutBox>
-              <button
+              <ButtonBig
                 disabled={dataC[0]?.inCart}
                 onClick={() => {
                   dispatch(addToCartAction(bookData));
@@ -120,8 +124,8 @@ export function BookPage() {
                 ) : (
                   <span> ADD TO CART</span>
                 )}
-              </button>
-              <button
+              </ButtonBig>
+              <ButtonBig
                 disabled={dataF[0]?.inFavourite}
                 onClick={() => {
                   dispatch(addToFavouriteAction(bookData));
@@ -132,7 +136,7 @@ export function BookPage() {
                 ) : (
                   <span> ADD TO Favourite</span>
                 )}
-              </button>
+              </ButtonBig>
             </BookAboutContainer>
           </BookContainer>
         )}
