@@ -37,7 +37,6 @@ export function MainPage() {
         <RevolvingDot
           height="500"
           width="500"
-          radius="100"
           color="gray"
           secondaryColor="lightblue"
           ariaLabel="revolving-dot-loading"
