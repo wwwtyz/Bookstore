@@ -1,18 +1,24 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
-import { fetchBook } from '../../api/fetchBook';
-
+import { useParams } from 'react-router-dom';
 import Heart from '../../assets/header/heart.svg';
 import StarsRating from '../../components/BookCard/StarsRaiting/StarsRating';
 import {
   ButtonBig,
   PrimaryLink
 } from '../../components/Registration/authorization.styled';
+import Spinner from '../../components/Spinner/Spinner';
 import { AppRoute } from '../../enums/router';
-import { addToCartAction } from '../../store/cart/cart.actions';
+import { requestDetailedBook } from '../../store/bookDetailed/bookDetailed.action';
+import {
+  bookDetailedLoadingStateSelector,
+  bookDetailedSelector
+} from '../../store/bookDetailed/bookDetailed.selectors';
+import {
+  addToCartAction,
+  incTotalCostAction
+} from '../../store/cart/cart.actions';
 import { cartSelector } from '../../store/cart/cart.selectors';
-import { cartActions } from '../../store/cart/cart.slice';
 import { addToFavouriteAction } from '../../store/favourite/favourite.actions';
 import { favouriteSelector } from '../../store/favourite/favourite.selectors';
 import { useAppDispatch } from '../../store/rootStore';
@@ -30,46 +36,27 @@ import {
 export function BookPage() {
   const { isbn13 } = useParams<{ isbn13: string }>();
   const apiPath = `https://api.itbook.store/1.0/books/${isbn13}`;
-  const [bookData, setBookData] = React.useState<BookDetailed>({
-    title: '',
-    subtitle: '',
-    authors: '',
-    publisher: '',
-    language: '',
-    isbn13: '',
-    year: '',
-    rating: '',
-    desc: '',
-    price: '',
-    image: ''
-  });
+  const bookData = useSelector(bookDetailedSelector);
   const cartData: BookDetailed[] = useSelector(cartSelector);
   const FavouriteData: BookDetailed[] = useSelector(favouriteSelector);
-  const [isLoading, setIsLoading] = React.useState(false);
   const dispatch = useAppDispatch();
+  const loadingState = useSelector(bookDetailedLoadingStateSelector);
   const dataC = cartData.filter((e) => e.isbn13 === bookData.isbn13);
   const dataF = FavouriteData.filter((e) => e.isbn13 === bookData.isbn13);
 
   React.useEffect(() => {
-    setIsLoading(true);
-    fetchBook(apiPath)
-      .then((response) => {
-        setBookData(response);
-        setIsLoading(false);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  }, []);
+    dispatch(requestDetailedBook(apiPath));
+  }, [dispatch]);
 
   return (
     <>
-      <div>
-        <PrimaryLink to={`${AppRoute.Main}`}>Back to main</PrimaryLink>
-        <h2>{bookData.title}</h2>
-        {isLoading ? (
-          <div>LOADING</div>
-        ) : (
+      {loadingState === 'pending' ? (
+        <Spinner />
+      ) : (
+        <div>
+          <PrimaryLink to={`${AppRoute.Main}`}>Back to main</PrimaryLink>
+          <h2>{bookData.title}</h2>
+
           <BookContainer>
             <BookImageContainer>
               <ImageBox>
@@ -114,9 +101,7 @@ export function BookPage() {
                 onClick={() => {
                   dispatch(addToCartAction(bookData));
 
-                  dispatch(
-                    cartActions.incremetnQt(Number(bookData.price.slice(1)))
-                  );
+                  dispatch(incTotalCostAction(Number(bookData.price.slice(1))));
                 }}
               >
                 {dataC[0]?.inCart ? (
@@ -139,12 +124,12 @@ export function BookPage() {
               </ButtonBig>
             </BookAboutContainer>
           </BookContainer>
-        )}
-        <div>
-          <h2>Desctiption</h2>
-          <p>{bookData.desc}</p>
+          <div>
+            <h2>Desctiption</h2>
+            <p>{bookData.desc}</p>
+          </div>
         </div>
-      </div>
+      )}
     </>
   );
 }

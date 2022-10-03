@@ -4,8 +4,10 @@ import { useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 import { BookCard } from '../../components/BookCard/BookCard';
 import { Pagination } from '../../components/Pagination/Pagination';
+import Spinner from '../../components/Spinner/Spinner';
 import {
   bookSelector,
+  booksLoadingStateSelector,
   currentPageSelector,
   searchStringSelector,
   totalPostPageSelector
@@ -47,6 +49,7 @@ export function SearchPage() {
   const currentPage = useSelector(currentPageSelector);
   const total = useSelector(totalPostPageSelector);
   const book = useSelector(bookSelector);
+  const loadingState = useSelector(booksLoadingStateSelector);
 
   const dispatch = useAppDispatch();
 
@@ -65,23 +68,29 @@ export function SearchPage() {
 
   return (
     <MainContainer>
-      <h1 style={{ textTransform: 'uppercase' }}>
-        {book.length ? `'${currentsearch}' Serach results` : 'No results'}
-      </h1>
-      {book.length ? (
-        <>
-          <BookList>
-            {book.map((book) => (
-              <BookCard
-                book={book}
-                key={book.isbn13}
-              />
-            ))}
-          </BookList>
-          <PaginationController />
-        </>
+      {loadingState === 'pending' ? (
+        <Spinner />
       ) : (
-        <div>Совсем ничего похожего(</div>
+        <>
+          <h1 style={{ textTransform: 'uppercase' }}>
+            {book.length ? `'${currentsearch}' Serach results` : 'No results'}
+          </h1>
+          {book.length ? (
+            <>
+              <BookList>
+                {book.map((book) => (
+                  <BookCard
+                    book={book}
+                    key={book.isbn13}
+                  />
+                ))}
+              </BookList>
+              <PaginationController />
+            </>
+          ) : (
+            <div>Совсем ничего похожего(</div>
+          )}
+        </>
       )}
     </MainContainer>
   );

@@ -8,6 +8,7 @@ import {
   TotalContainer,
   TotalSpan
 } from '../../components/CartCard/cartCartd.styled';
+import { ButtonBig } from '../../components/Registration/authorization.styled';
 import { PageContainer } from '../../MainLayout/layout.styled';
 import {
   cartSelector,
@@ -45,13 +46,13 @@ export default function CartPage() {
               <TotalSpan>TOTAL COST:</TotalSpan>{' '}
               <TotalSpan>{(totalCost * 1.2).toFixed(2)}$</TotalSpan>
             </SumBox>
-            <button
+            <ButtonBig
               onClick={() =>
                 alert('Knock-knock. your order has been delivered')
               }
             >
               CHECK OUT
-            </button>
+            </ButtonBig>
           </TotalBox>
         </TotalContainer>
       ) : (

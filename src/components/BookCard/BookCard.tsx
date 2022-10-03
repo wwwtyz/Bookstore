@@ -1,11 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { fetchBook } from '../../api/fetchBook';
+
 import { AppRoute } from '../../enums/router';
 import { Price } from '../../pages/Bookpage/bookPage.styled';
 import { booksLoadingStateSelector } from '../../store/book.selectors';
-import { Book, BookDetailed } from '../../types/book.types';
+import { requestDetailedBook } from '../../store/bookDetailed/bookDetailed.action';
+import { bookDetailedSelector } from '../../store/bookDetailed/bookDetailed.selectors';
+
+import { useAppDispatch } from '../../store/rootStore';
+import { Book } from '../../types/book.types';
+import Spinner from '../Spinner/Spinner';
 import {
   BookCardContainer,
   ImageContainer,
@@ -19,39 +24,20 @@ import StarsRating from './StarsRaiting/StarsRating';
 
 export function BookCard({ book }: { book: Book }) {
   const apiPath = `${process.env.REACT_APP_API_PATH}/books/${book.isbn13}`;
-  const [loading, setLoading] = useState(false);
-  const [bookData, setBookData] = React.useState<BookDetailed>({
-    title: '',
-    subtitle: '',
-    authors: '',
-    publisher: '',
-    language: '',
-    isbn13: '',
-    year: '',
-    rating: '',
-    desc: '',
-    price: '',
-    image: ''
-  });
+  const bookData = useSelector(bookDetailedSelector);
+  const dispatch = useAppDispatch();
   const loadingState = useSelector(booksLoadingStateSelector);
+
   React.useEffect(() => {
-    setLoading(true);
-    fetchBook(apiPath)
-      .then((response) => {
-        setBookData(response);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-    setLoading(false);
-  }, []);
+    dispatch(requestDetailedBook(apiPath));
+  }, [dispatch]);
 
   return (
     <BookCardContainer>
       <Link to={`/${AppRoute.Books}/${book.isbn13}`}>
         <ImageContainer>
           {loadingState === 'pending' ? (
-            <div>LOADING</div>
+            <Spinner />
           ) : (
             <img
               src={book.image}
@@ -64,15 +50,12 @@ export function BookCard({ book }: { book: Book }) {
         <AboutBox>
           <Title to={`/${AppRoute.Books}/${book.isbn13}`}>{book.title}</Title>
         </AboutBox>
-        {loading ? (
-          <div>LOADING</div>
-        ) : (
-          <AboutBox>
-            <About>
-              by {bookData.authors}, {bookData.publisher}, {bookData.year}
-            </About>
-          </AboutBox>
-        )}
+        <AboutBox>
+          <About>
+            by {bookData.authors}, {bookData.publisher}, {bookData.year}
+          </About>
+        </AboutBox>
+
         <AboutBox>
           <PriceBox>
             <Price>{book.price}</Price>
