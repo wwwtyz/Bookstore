@@ -36,7 +36,7 @@ export default function CartPage() {
           <TotalBox>
             <SumBox>
               <span>Sum Total: </span>
-              <span>{totalCost.toFixed(2)}$</span>
+              <span>{(totalCost * 1).toFixed(2)}$</span>
             </SumBox>
             <SumBox>
               <span>VAT: </span>
