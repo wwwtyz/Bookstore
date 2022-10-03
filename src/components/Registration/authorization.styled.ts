@@ -47,6 +47,7 @@ export const ButtonBig = styled.button`
   color: var(--bs-color-text-invert);
   background-color: var(--bs-color-text);
   padding: var(--bs-spacing-4) var(--bs-spacing-1);
+  margin: var(--bs-spacing-8) 0;
 
   &:hover {
     background-color: var(--bs-color-invert);
