@@ -22,7 +22,6 @@ import { userActions } from '../../store/user/user.slice';
 
 export function Header() {
   const dispatch = useAppDispatch();
-
   const { isAuth, name } = useAuthSelector();
   return (
     <HeaderContainer>
@@ -43,7 +42,7 @@ export function Header() {
             style={{ borderRadius: '40%' }}
             onClick={() => dispatch(userActions.removeUser())}
           >
-            <Exit /> {name}
+            <Exit /> <span>{name}</span>
           </ThemeSwitcherBox>
         ) : (
           <Link to={AppRoute.Login}>

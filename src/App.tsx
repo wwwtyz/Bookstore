@@ -1,5 +1,7 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Navigate, Route, Routes } from 'react-router-dom';
+import Spinner from './components/Spinner/Spinner';
 
 import { AppThemeProvider } from './contexts/AppThemeProvider/AppThemeProvider';
 import { AppRoute } from './enums/router';
@@ -12,8 +14,16 @@ import CartPage from './pages/CartPage/CartPage';
 import FavouritePage from './pages/FavouritePage/FavouritePage';
 import { MainPage } from './pages/MainPage/MainPage';
 import SearchPage from './pages/SearchPage/SearchPage';
+import { booksLoadingStateSelector } from './store/book.selectors';
+import { bookDetailedLoadingStateSelector } from './store/bookDetailed/bookDetailed.selectors';
 
 function App() {
+  const loadingState = useSelector(booksLoadingStateSelector);
+  const loadingStateDetailed = useSelector(bookDetailedLoadingStateSelector);
+
+  if (loadingState === 'pending' || loadingStateDetailed === 'pending') {
+    return <Spinner />;
+  }
   return (
     <AppThemeProvider>
       <Routes>

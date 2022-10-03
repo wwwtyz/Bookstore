@@ -53,7 +53,7 @@ const RegistrationForm: React.FC<FormProps> = ({ handleClick }) => {
           disabled={
             !name || !email || !pass || !confirmPass || pass !== confirmPass
           }
-          onClick={() => handleClick(email, pass)}
+          onClick={() => handleClick(email, pass, name)}
         >
           Sign Up
         </ButtonBig>
