@@ -14,7 +14,7 @@ const favouriteSlice = createSlice({
   },
   reducers: {
     addToFavourite: (state, { payload }: { payload: BookDetailed }) => {
-      state.favouriteList.push(payload);
+      state.favouriteList.push({ ...payload });
       state.favouriteList.filter((e) =>
         e.isbn13 === payload.isbn13 ? (e.inFavourite = true) : null
       );

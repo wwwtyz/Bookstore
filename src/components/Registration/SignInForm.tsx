@@ -9,7 +9,7 @@ import {
 } from './authorization.styled';
 
 export interface FormProps {
-  handleClick: (email: string, pass: string, username?: string) => void;
+  handleClick: (email: string, pass: string, name?: any) => void;
 }
 
 const SignInForm: FC<FormProps> = ({ handleClick }) => {

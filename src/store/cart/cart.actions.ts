@@ -52,3 +52,27 @@ export const minusNumAction =
       (error: SerializedError) => console.error(error);
     }
   };
+export const incTotalCostAction =
+  (payload: number) => (dispatch: AppDispatch) => {
+    try {
+      dispatch(cartActions.incremetnQt(payload));
+      localStorage.setItem(
+        'totalCost',
+        JSON.stringify(rootStore.getState().cart.totalCost)
+      );
+    } catch {
+      (error: SerializedError) => console.error(error);
+    }
+  };
+export const decTotalCostAction =
+  (payload: number) => (dispatch: AppDispatch) => {
+    try {
+      dispatch(cartActions.decremetnQt(payload));
+      localStorage.setItem(
+        'totalCost',
+        JSON.stringify(rootStore.getState().cart.totalCost)
+      );
+    } catch {
+      (error: SerializedError) => console.error(error);
+    }
+  };

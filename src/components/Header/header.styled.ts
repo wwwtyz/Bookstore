@@ -56,6 +56,7 @@ export const SearchBarContainer = styled.div`
 `;
 
 export const ThemeSwitcherBox = styled.button`
+  color: var(--bs-color-text);
   border: none;
   background: transparent;
   padding: 3px;

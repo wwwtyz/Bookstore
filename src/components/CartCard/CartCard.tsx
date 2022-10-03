@@ -1,20 +1,17 @@
-import React, { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React from 'react';
 import { useSelector } from 'react-redux';
 
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../enums/router';
 import {
   addNumAction,
+  decTotalCostAction,
+  incTotalCostAction,
   minusNumAction,
   removeFromCartAction
 } from '../../store/cart/cart.actions';
-import {
-  cartSelector,
-  totalCostSelector
-} from '../../store/cart/cart.selectors';
+import { cartSelector } from '../../store/cart/cart.selectors';
 
-import { cartActions } from '../../store/cart/cart.slice';
 import { useAppDispatch } from '../../store/rootStore';
 import { BookDetailed } from '../../types/book.types';
 import {
@@ -31,7 +28,6 @@ export default function CartCard({ book }: { book: BookDetailed }) {
   const cartData: BookDetailed[] = useSelector(cartSelector);
   const countData = cartData.filter((e) => e.isbn13 === book.isbn13);
 
-  // const [count, setCount] = useState(1);
   const price = Number(book.price.slice(1));
 
   const dispatch = useAppDispatch();
@@ -59,7 +55,7 @@ export default function CartCard({ book }: { book: BookDetailed }) {
             <CartButton
               disabled={Number(countData[0].numInCart) <= 1}
               onClick={() => {
-                dispatch(cartActions.decremetnQt(price));
+                dispatch(decTotalCostAction(price));
                 dispatch(minusNumAction(book));
               }}
             >
@@ -68,7 +64,7 @@ export default function CartCard({ book }: { book: BookDetailed }) {
             <span>{Number(countData[0].numInCart)}</span>
             <CartButton
               onClick={() => {
-                dispatch(cartActions.incremetnQt(price));
+                dispatch(incTotalCostAction(price));
                 dispatch(addNumAction(book));
               }}
             >
@@ -85,7 +81,7 @@ export default function CartCard({ book }: { book: BookDetailed }) {
             onClick={() => {
               dispatch(removeFromCartAction(book));
               dispatch(
-                cartActions.decremetnQt(
+                decTotalCostAction(
                   Number((price * Number(countData[0].numInCart)).toFixed(2))
                 )
               );
