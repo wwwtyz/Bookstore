@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction, SerializedError } from '@reduxjs/toolkit';
 import { Book } from '../types/book.types';
-import { requestBooks } from './bookSearch.actions';
+import { requestBooks, requestNewBooks } from './bookSearch.actions';
 
 const bookSlice = createSlice({
   name: 'book',
@@ -34,6 +34,17 @@ const bookSlice = createSlice({
         state.loadingState = action.meta.requestStatus;
       })
       .addCase(requestBooks.rejected, (state, action) => {
+        state.loadingState = action.meta.requestStatus;
+        state.error = action.error;
+      })
+      .addCase(requestNewBooks.fulfilled, (state, action) => {
+        state.books = action.payload.books;
+        state.loadingState = action.meta.requestStatus;
+      })
+      .addCase(requestNewBooks.pending, (state, action) => {
+        state.loadingState = action.meta.requestStatus;
+      })
+      .addCase(requestNewBooks.rejected, (state, action) => {
         state.loadingState = action.meta.requestStatus;
         state.error = action.error;
       });

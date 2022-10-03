@@ -17,5 +17,5 @@ export const requestBooks = createAsyncThunk<
   })
 );
 export const requestNewBooks = createAsyncThunk<
-  Awaited<ReturnType<typeof fetchSearchBooks>>
+  Awaited<ReturnType<typeof fetchBooks>>
 >('book/requestNewBooks', () => fetchBooks());
