@@ -1,44 +1,36 @@
-import React from 'react';
-
-import { fetchBooks } from '../../api/fetchBooks';
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { BookCard } from '../../components/BookCard/BookCard';
 import Spinner from '../../components/Spinner/Spinner';
-import { FetchBookResponse } from '../../types/book.types';
+import {
+  bookSelector,
+  booksLoadingStateSelector
+} from '../../store/book.selectors';
+import { requestNewBooks } from '../../store/bookSearch.actions';
+import { useAppDispatch } from '../../store/rootStore';
 
 import { BookList, MainContainer } from './mainPage.styled';
 
 export function MainPage() {
-  const [booksData, setBooksData] = React.useState<FetchBookResponse>({
-    total: '',
-    books: []
-  });
+  const booksData = useSelector(bookSelector);
+  const loadingState = useSelector(booksLoadingStateSelector);
+  const dispatch = useAppDispatch();
 
-  const [isLoading, setIsLoading] = React.useState(false);
-  React.useEffect(() => {
-    const abortController = new AbortController();
-    setIsLoading(true);
-    fetchBooks()
-      .then((response) => {
-        setBooksData(response);
-        setIsLoading(false);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-    return () => {
-      abortController.abort();
-    };
-  }, []);
+  useEffect(() => {
+    {
+      dispatch(requestNewBooks());
+    }
+  }, [dispatch]);
 
   return (
     <MainContainer>
-      {isLoading ? (
+      {loadingState === 'pending' ? (
         <Spinner />
       ) : (
         <>
           <h1>New Releases Books</h1>
           <BookList>
-            {booksData.books.map((book) => (
+            {booksData.map((book) => (
               <BookCard
                 book={book}
                 key={book.isbn13}

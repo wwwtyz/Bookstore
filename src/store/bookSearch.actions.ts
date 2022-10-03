@@ -1,4 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { fetchBooks } from '../api/fetchBooks';
 import { fetchSearchBooks } from '../api/fetchSerachBooks';
 
 export const requestBooks = createAsyncThunk<
@@ -15,3 +16,6 @@ export const requestBooks = createAsyncThunk<
     page: payload.page
   })
 );
+export const requestNewBooks = createAsyncThunk<
+  Awaited<ReturnType<typeof fetchSearchBooks>>
+>('book/requestNewBooks', () => fetchBooks());
