@@ -4,6 +4,9 @@ export const CartContainer = styled.div`
   display: flex;
   padding: 1rem 0;
   border-bottom: 1px solid var(--bs-color-primary-2);
+  @media (max-width: 650px) {
+    flex-direction: column;
+  }
 `;
 export const CartImageBox = styled.div`
   background-color: var(--bs-color-primary-2); ;

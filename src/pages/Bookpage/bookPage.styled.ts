@@ -1,8 +1,11 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
 export const BookContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  @media (max-width: 650px) {
+    flex-direction: column;
+  }
 `;
 export const BookImageContainer = styled.div`
   display: flex;

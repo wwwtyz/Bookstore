@@ -9,6 +9,14 @@ export const BookCardContainer = styled.div`
   padding: var(--bs-spacing-7);
   border: 1px solid var(--bs-color-border);
 `;
+export const ContainerRaw = styled.div`
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  @media (max-width: 650px) {
+    display: none;
+  }
+`;
 export const ImageContainer = styled.div`
   display: flex;
   justify-content: center;

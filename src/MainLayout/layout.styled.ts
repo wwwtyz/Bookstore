@@ -4,6 +4,7 @@ export const PageContainer = styled.main`
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  justify-content: center;
 `;
 
 export const AppContainerBox = styled.div`

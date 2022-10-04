@@ -5,7 +5,7 @@ import { faSun as LightThemeIcon } from '@fortawesome/free-solid-svg-icons/faSun
 
 import { useAppThemeController } from '../../../contexts/AppThemeProvider/AppThemeControllerContext';
 import { ThemeVariant } from '../../../contexts/AppThemeProvider/theme';
-import { ThemeSwitcherBox } from '../header.styled';
+import { ThemeSwitcherBtn } from '../header.styled';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export function ThemeSwitcher() {
@@ -19,7 +19,7 @@ export function ThemeSwitcher() {
   }
 
   return (
-    <ThemeSwitcherBox
+    <ThemeSwitcherBtn
       style={{ borderRadius: '40%' }}
       onClick={() => toggleTheme(themeVariant)}
     >
@@ -28,6 +28,6 @@ export function ThemeSwitcher() {
       ) : (
         <FontAwesomeIcon icon={DarkThemeIcon} />
       )}
-    </ThemeSwitcherBox>
+    </ThemeSwitcherBtn>
   );
 }

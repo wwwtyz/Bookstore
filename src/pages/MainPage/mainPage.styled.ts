@@ -7,6 +7,7 @@ export const MainContainer = styled.div`
 
 export const BookList = styled.div`
   display: flex;
+  justify-content: center;
   gap: var(--bs-spacing-7);
   flex-wrap: wrap;
   flex-basis: 25%;

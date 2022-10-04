@@ -6,6 +6,9 @@ export const HeaderWrap = styled.div`
   position: fixed;
   top: 0;
 `;
+export const LogoContainer = styled.div`
+  display: flex;
+`;
 
 export const HeaderContainer = styled.header`
   background-color: var(--bs-color-primary);
@@ -55,7 +58,7 @@ export const SearchBarContainer = styled.div`
   }
 `;
 
-export const ThemeSwitcherBox = styled.button`
+export const ThemeSwitcherBtn = styled.button`
   color: var(--bs-color-text);
   border: none;
   background: transparent;
@@ -66,8 +69,28 @@ export const ThemeSwitcherBox = styled.button`
     height: 18px;
   }
 `;
+export const SidePanelBtn = styled.button`
+  color: var(--bs-color-text);
+  border: none;
+  background: transparent;
+  padding: 3px;
 
-export const LinkContainer = styled.div`
+  svg {
+    width: 18px;
+    height: 18px;
+  }
+  @media (min-width: 650px) {
+    display: none;
+  }
+`;
+export const HideContainer = styled.div`
+  flex: 1;
+  @media (max-width: 650px) {
+    display: none;
+  }
+`;
+
+export const LinkContainerRaw = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
