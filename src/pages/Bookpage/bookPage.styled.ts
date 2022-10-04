@@ -25,6 +25,7 @@ export const BookImageContainer = styled.div`
 `;
 export const ImageBox = styled.div`
   display: flex;
+  justify-content: center;
 `;
 export const BookAboutContainer = styled.div`
   display: flex;

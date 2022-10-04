@@ -9,6 +9,8 @@ export const CartContainer = styled.div`
   }
 `;
 export const CartImageBox = styled.div`
+  display: flex;
+  justify-content: center;
   background-color: var(--bs-color-primary-2); ;
 `;
 export const CartAboutContainer = styled.div`

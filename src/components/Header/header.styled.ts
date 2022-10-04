@@ -85,6 +85,44 @@ export const SidePanelBtn = styled.button`
 `;
 export const HideContainer = styled.div`
   flex: 1;
+  a,
+  button {
+    padding: var(--bs-spacing-8);
+    margin: var(--bs-spacing-8);
+    border-radius: 40%;
+    fill: var(--bs-color-text);
+    stroke: var(--bs-color-primary);
+  }
+  a,
+  button {
+    :hover {
+      background: var(--bs-color-bg-medium);
+    }
+
+    :hover * {
+      fill: #fc857f;
+    }
+
+    :active * {
+      fill: #fc857f;
+      stroke: #fc857f;
+    }
+  }
+
+  @media (max-width: 650px) {
+    display: none;
+  }
+`;
+export const SearchHideContainer = styled.div`
+  flex: 1;
+
+  @media (max-width: 650px) {
+    display: none;
+  }
+`;
+export const BtnBox = styled.div`
+  display: flex;
+  flex: 1;
 
   * {
     margin: var(--bs-spacing-8);
@@ -108,7 +146,7 @@ export const HideContainer = styled.div`
       stroke: #fc857f;
     }
   }
-  @media (max-width: 650px) {
+  @media (min-width: 650px) {
     display: none;
   }
 `;
@@ -117,26 +155,4 @@ export const LinkContainerRaw = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  * {
-    margin: var(--bs-spacing-8);
-    border-radius: 40%;
-    fill: var(--bs-color-text);
-    stroke: var(--bs-color-primary);
-  }
-
-  a,
-  button {
-    :hover {
-      background: var(--bs-color-bg-medium);
-    }
-
-    :hover * {
-      fill: #fc857f;
-    }
-
-    :active * {
-      fill: #fc857f;
-      stroke: #fc857f;
-    }
-  }
 `;

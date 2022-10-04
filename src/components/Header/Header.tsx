@@ -5,10 +5,12 @@ import { ReactComponent as Bugger } from '../../assets/header/burger.svg';
 import { ReactComponent as Cross } from '../../assets/header/Icon-Cancel.svg';
 
 import {
+  BtnBox,
   HeaderContainer,
   HideContainer,
   LinkContainerRaw,
   LogoContainer,
+  SearchHideContainer,
   SidePanelBtn
 } from './header.styled';
 
@@ -31,19 +33,21 @@ export function Header({
           <Logo style={{ marginLeft: '0.5rem' }} />
         </Link>
       </LogoContainer>
-      <HideContainer>
+      <SearchHideContainer>
         <SearchBar />
-      </HideContainer>
+      </SearchHideContainer>
       <LinkContainerRaw>
-        <SidePanelBtn
-          style={{ borderRadius: '40%' }}
-          onClick={(e) => {
-            toggleSidePanel();
-            e.stopPropagation();
-          }}
-        >
-          {isSidePanelOpen ? <Cross /> : <Bugger />}
-        </SidePanelBtn>
+        <BtnBox>
+          <SidePanelBtn
+            style={{ borderRadius: '40%' }}
+            onClick={(e) => {
+              toggleSidePanel();
+              e.stopPropagation();
+            }}
+          >
+            {isSidePanelOpen ? <Cross /> : <Bugger />}
+          </SidePanelBtn>
+        </BtnBox>
         <HideContainer>
           <LinkContainer />
         </HideContainer>
