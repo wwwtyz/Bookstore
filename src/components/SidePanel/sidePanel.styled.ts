@@ -5,9 +5,9 @@ import { NavLink } from 'react-router-dom';
 export const SidePanelContainer = styled.div<{ isSidePanelOpen: boolean }>`
   position: fixed;
   transition: transform 300ms ease-in-out;
-  top: 100px;
+  top: 0;
   left: 150%;
-
+  z-index: 10;
   bottom: 0;
   width: 50%;
   border: 1px solid var(--bs-color-border);

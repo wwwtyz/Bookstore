@@ -25,6 +25,7 @@ export function MainLayout() {
       <SidePanel
         isSidePanelOpen={isSidePanelOpen}
         onClickOutside={toggleSidePanel}
+        toggleSidePanel={toggleSidePanel}
       />
       <AppContainerBox>
         <ContentContainer>

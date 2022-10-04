@@ -16,7 +16,6 @@ import { AppRoute } from '../../enums/router';
 import { Link } from 'react-router-dom';
 import LinkContainer from './LinkContainer';
 import { SearchBar } from './SearchBar/SearchBar';
-import { width } from '@fortawesome/free-solid-svg-icons/faMoon';
 
 export function Header({
   isSidePanelOpen,

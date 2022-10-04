@@ -117,4 +117,26 @@ export const LinkContainerRaw = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  * {
+    margin: var(--bs-spacing-8);
+    border-radius: 40%;
+    fill: var(--bs-color-text);
+    stroke: var(--bs-color-primary);
+  }
+
+  a,
+  button {
+    :hover {
+      background: var(--bs-color-bg-medium);
+    }
+
+    :hover * {
+      fill: #fc857f;
+    }
+
+    :active * {
+      fill: #fc857f;
+      stroke: #fc857f;
+    }
+  }
 `;
