@@ -11,19 +11,33 @@ import { userActions } from '../../store/user/user.slice';
 
 import { ThemeSwitcher } from './ThemeSwitcher/ThemeSwitcher';
 import { useAppDispatch } from '../../store/rootStore';
-import { ThemeSwitcherBtn } from './header.styled';
+import { LinkIndicator, ThemeSwitcherBtn } from './header.styled';
+import { useSelector } from 'react-redux';
+import { cartSelector } from '../../store/cart/cart.selectors';
+import { BookDetailed } from '../../types/book.types';
+import { favouriteSelector } from '../../store/favourite/favourite.selectors';
 
 function LinkContainer() {
   const { isAuth, name } = useAuthSelector();
   const dispatch = useAppDispatch();
+  const cartData: BookDetailed[] = useSelector(cartSelector);
+  const favouriteData: BookDetailed[] = useSelector(favouriteSelector);
   return (
     <>
       <ThemeSwitcher />
-      <Link to={AppRoute.Favourite}>
+      <Link
+        style={{ position: 'relative' }}
+        to={AppRoute.Favourite}
+      >
         <Heart />
+        {favouriteData.length > 0 ? <LinkIndicator /> : null}
       </Link>
-      <Link to={AppRoute.Cart}>
+      <Link
+        style={{ position: 'relative' }}
+        to={AppRoute.Cart}
+      >
         <Cart />
+        {cartData.length > 0 ? <LinkIndicator /> : null}
       </Link>
       {isAuth ? (
         <ThemeSwitcherBtn

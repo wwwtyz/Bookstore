@@ -159,3 +159,12 @@ export const LinkContainerRaw = styled.div`
   justify-content: space-between;
   align-items: center;
 `;
+export const LinkIndicator = styled.span`
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  position: absolute;
+  top: 20%;
+  right: 20%;
+  background-color: orange;
+`;
