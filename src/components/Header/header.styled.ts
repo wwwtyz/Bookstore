@@ -52,7 +52,7 @@ export const SearchBarContainer = styled.div`
     position: absolute;
     top: 0;
     right: 0;
-    transform: translate(-300%, 75%);
+    transform: translate(-300%, 50%);
     width: var(--bs-spacing-7);
     height: auto;
   }
@@ -85,22 +85,16 @@ export const SidePanelBtn = styled.button`
 `;
 export const HideContainer = styled.div`
   flex: 1;
-  @media (max-width: 650px) {
-    display: none;
-  }
-`;
-
-export const LinkContainerRaw = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 
   * {
     margin: var(--bs-spacing-8);
     border-radius: 40%;
     fill: var(--bs-color-text);
     stroke: var(--bs-color-primary);
+  }
 
+  a,
+  button {
     :hover {
       background: var(--bs-color-bg-medium);
     }
@@ -114,4 +108,13 @@ export const LinkContainerRaw = styled.div`
       stroke: #fc857f;
     }
   }
+  @media (max-width: 650px) {
+    display: none;
+  }
+`;
+
+export const LinkContainerRaw = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
