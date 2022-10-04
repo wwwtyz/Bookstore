@@ -38,7 +38,7 @@ export const SearchBarContainer = styled.div`
     border: 1px solid var(--bs-color-border);
     height: var(--bs-spacing-4);
     padding: 15px;
-    margin: 5px var(--bs-spacing-4) 0;
+    margin: 0 var(--bs-spacing-4);
     flex: 1;
   }
 
@@ -52,9 +52,12 @@ export const SearchBarContainer = styled.div`
     position: absolute;
     top: 0;
     right: 0;
-    transform: translate(-300%, 50%);
+    transform: translate(-300%, 0);
     width: var(--bs-spacing-7);
     height: auto;
+    @media (min-width: 650px) {
+      transform: translate(-300%, 50%);
+    }
   }
 `;
 
